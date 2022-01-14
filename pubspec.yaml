@@ -45,6 +45,16 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons:
+    git:
+      url: https://github.com/Davenchy/flutter_launcher_icons.git
+      ref: fixMinSdkParseFlutter2.8
+
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/launcher.png
 
 flutter:
   uses-material-design: true
