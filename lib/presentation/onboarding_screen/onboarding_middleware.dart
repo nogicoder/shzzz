@@ -8,7 +8,6 @@ class OnboardingMiddleware extends GetMiddleware {
   RouteSettings? redirect(String? route) {
     if (userConfigService.isOnboarded) {
       if (userConfigService.userInfo != null) {
-        userConfigService.setUserInfo(null);
         return RouteSettings(name: Routes.BASE_SCREEN);
       }
       return RouteSettings(name: Routes.REGISTER_SCREEN);

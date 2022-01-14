@@ -23,8 +23,6 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    userConfigService.storage.clear();
-
     return Container(
       color: Get.theme.cardColor,
       padding: Constants.kPaddingStandard,
@@ -75,8 +73,7 @@ class OnboardingScreen extends StatelessWidget {
           height: Get.height * 0.1,
           child: Text(
             descs[index],
-            style:
-                UITextStyle.subtitle1()?.copyWith(color: UIColors.lightBlack),
+            style: UITextStyle.subtitle1(),
             textAlign: TextAlign.center,
           ),
         ),
@@ -105,17 +102,21 @@ class OnboardingScreen extends StatelessWidget {
   }
 
   Widget _buildButtons() {
-    return UIButton(
-      title: tr().start_now,
-      onTap: () {
-        if (currentIndex.value != titles.length - 1) {
-          controller.nextPage(
-              duration: Duration(milliseconds: 500), curve: Curves.linear);
-        } else {
-          userConfigService.setOnboarded();
-          Get.toNamed(Routes.REGISTER_SCREEN);
-        }
-      },
+    return Obx(
+      () => UIButton(
+        title: currentIndex.value != titles.length - 1
+            ? tr().next
+            : tr().start_now,
+        onTap: () {
+          if (currentIndex.value != titles.length - 1) {
+            controller.nextPage(
+                duration: Duration(milliseconds: 500), curve: Curves.linear);
+          } else {
+            userConfigService.setOnboarded();
+            Get.toNamed(Routes.REGISTER_SCREEN);
+          }
+        },
+      ),
     );
   }
 }

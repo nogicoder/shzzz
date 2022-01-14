@@ -35,21 +35,18 @@ class UIButton extends StatelessWidget {
     return SafeArea(
       child: Container(
         width: width ?? double.infinity,
-        height: height ?? 40,
+        height: height ?? 45,
         child: ElevatedButton(
           onPressed: isDisable ? null : onTap,
-          style: Get.theme.elevatedButtonTheme.style?.copyWith(
-            backgroundColor: isDisable
-                ? MaterialStateProperty.all(Color(0xFF333333).withOpacity(0.2))
-                : MaterialStateProperty.all(
-                    buttonColor ?? Get.theme.primaryColor),
-            shape: MaterialStateProperty.all(
-              RoundedRectangleBorder(
-                borderRadius: Constants.kBorderRadiusStandard,
-                side: borderColor != null
-                    ? BorderSide(color: borderColor!, width: 1)
-                    : BorderSide.none,
-              ),
+          style: ElevatedButton.styleFrom(
+            primary: isDisable
+                ? Color(0xFF333333).withOpacity(0.2)
+                : buttonColor ?? Get.theme.primaryColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: Constants.kBorderRadiusStandard,
+              side: borderColor != null
+                  ? BorderSide(color: borderColor!, width: 1)
+                  : BorderSide.none,
             ),
           ),
           child: labelWidget ??

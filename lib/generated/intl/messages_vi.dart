@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "how_to_call":
             MessageLookupByLibrary.simpleMessage("Tôi có thể gọi bạn là gì?"),
         "lets_go": MessageLookupByLibrary.simpleMessage("Let\'s go"),
+        "next": MessageLookupByLibrary.simpleMessage("Next"),
         "onboarding_1_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_1_title": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_2_desc": MessageLookupByLibrary.simpleMessage(""),

@@ -13,11 +13,16 @@ class RegisterScreen extends StatelessWidget {
       child: Stack(
         alignment: AlignmentDirectional.center,
         children: [
-          Positioned.fill(
+          Positioned(
+            left: Constants.kOuterPadding,
+            right: Constants.kOuterPadding,
             child: Center(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(tr().how_to_call),
+                  Text(tr().how_to_call,
+                      style: UITextStyle.headline5(FontWeight.bold)),
                   TextField(
                     decoration: InputDecoration(hintText: 'Eg: Peter'),
                   )
@@ -26,7 +31,7 @@ class RegisterScreen extends StatelessWidget {
             ),
           ),
           Positioned(
-            bottom: 0,
+            bottom: Constants.kOuterPadding,
             left: Constants.kOuterPadding,
             right: Constants.kOuterPadding,
             child: UIButton(
