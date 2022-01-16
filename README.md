@@ -14,4 +14,8 @@ There are 3 layers to the app:
 - Presentation layer: Presents the data and handles user interaction with the app
 
 
+## Upcoming Features
 
+- Background image, avatar image
+- Star task
+- View deadline in 3 days

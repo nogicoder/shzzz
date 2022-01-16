@@ -5,7 +5,9 @@ import 'package:shzzz/data/index.dart';
 import 'package:shzzz/shared/index.dart';
 
 class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+  RegisterScreen({Key? key}) : super(key: key);
+
+  final TextEditingController textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,6 +26,7 @@ class RegisterScreen extends StatelessWidget {
                   Text(tr().how_to_call,
                       style: UITextStyle.headline5(FontWeight.bold)),
                   TextField(
+                    controller: textController,
                     decoration: InputDecoration(hintText: 'Eg: Peter'),
                   )
                 ],
@@ -37,8 +40,11 @@ class RegisterScreen extends StatelessWidget {
             child: UIButton(
               title: tr().lets_go,
               onTap: () {
-                userConfigService.setUserInfo(UserInfo(name: 'Test'));
-                Get.toNamed(Routes.BASE_SCREEN);
+                if (textController.text.isNotEmpty) {
+                  userConfigService
+                      .setUserInfo(UserInfo(name: textController.text.trim()));
+                  Get.toNamed(Routes.BASE_SCREEN);
+                }
               },
             ),
           )

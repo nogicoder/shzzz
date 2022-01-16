@@ -8,11 +8,10 @@ class Routes {
 
   static List<GetPage> getPages = [
     GetPage(
-        name: Routes.ONBOARDING_SCREEN,
-        page: () => OnboardingScreen(),
-        middlewares: [
-          OnboardingMiddleware(),
-        ]),
+      name: Routes.ONBOARDING_SCREEN,
+      page: () => OnboardingScreen(),
+      middlewares: [OnboardingMiddleware()],
+    ),
     GetPage(
       name: Routes.REGISTER_SCREEN,
       page: () => RegisterScreen(),

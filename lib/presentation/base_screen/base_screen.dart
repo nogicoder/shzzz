@@ -1,9 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 import 'package:get/get.dart';
-import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
+import 'package:expandable/expandable.dart';
+
 import 'package:shzzz/business/services/index.dart';
-import 'package:shzzz/shared/constants.dart';
 import 'package:shzzz/shared/index.dart';
 
 class BaseScreen extends StatelessWidget {
@@ -37,7 +38,7 @@ class BaseScreen extends StatelessWidget {
           switch (index) {
             case 0:
             default:
-              return _buildFirstTab();
+              return UITabLayout(child: _buildFirstTab());
           }
         },
       ),
@@ -45,44 +46,61 @@ class BaseScreen extends StatelessWidget {
   }
 
   Widget _buildFirstTab() {
-    return Container(
-      child: Stack(
-        children: [
-          Positioned(
-            top: 120,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(25),
-                  topRight: Radius.circular(25),
+    return Material(
+      child: CustomScrollView(
+        slivers: [
+          SliverPadding(
+            padding: Constants.kHorizontalPaddingStandard,
+            sliver: SliverList(
+              delegate: SliverChildListDelegate(
+                List<Widget>.generate(
+                  10,
+                  (index) => Padding(
+                    padding: index != 10
+                        ? EdgeInsets.only(bottom: Constants.kSmallPadding)
+                        : EdgeInsets.zero,
+                    child: UITodoItem(),
+                  ),
                 ),
               ),
-              child: CustomScrollView(
-                slivers: [
-                  SliverPadding(
-                    padding: Constants.kHorizontalPaddingStandard,
-                    sliver: SliverToBoxAdapter(
-                      child: Text(
-                        "What's up, ${userConfigService.userInfo?.name ?? ''}!",
-                        style: UITextStyle.headline4(FontWeight.bold),
-                      ),
+            ),
+          ),
+          SliverToBoxAdapter(
+            child: ExpandableNotifier(
+              child: Column(
+                children: [
+                  Expandable(
+                    collapsed: ExpandableButton(
+                      child: UISectionTitle(title: tr().completed),
+                    ),
+                    expanded: Column(
+                      children: [
+                        ExpandableButton(
+                          child: UISectionTitle(title: tr().completed),
+                        ),
+                        Padding(
+                          padding: Constants.kHorizontalPaddingStandard,
+                          child: ListBody(
+                            children: List<Widget>.generate(
+                              10,
+                              (index) => Padding(
+                                padding: index != 10
+                                    ? EdgeInsets.only(
+                                        bottom: Constants.kSmallPadding)
+                                    : EdgeInsets.zero,
+                                child: UITodoItem(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  SliverList(
-                    delegate: SliverChildListDelegate(
-                      List<Widget>.generate(
-                        10,
-                        (index) => _buildItem(index),
-                      ),
-                    ),
-                  )
                 ],
               ),
             ),
-          )
+          ),
+          SliverToBoxAdapter(child: SizedBox(height: 110)),
         ],
       ),
     );

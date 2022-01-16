@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "completed": MessageLookupByLibrary.simpleMessage("Đã hoàn thành"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
         "how_to_call":
             MessageLookupByLibrary.simpleMessage("Tôi có thể gọi bạn là gì?"),
