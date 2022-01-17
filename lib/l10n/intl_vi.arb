@@ -10,5 +10,12 @@
   "how_to_call": "Tôi có thể gọi bạn là gì?",
   "lets_go": "Let's go",
   "next": "Next",
-  "completed": "Đã hoàn thành"
+  "completed": "Đã hoàn thành",
+  "enter_task": "Nhập công việc mới",
+  "create_task": "Tạo công việc",
+  "min_length_error": "Tiêu đề tối thiểu là 6 ký tự",
+  "today": "Hôm nay",
+  "add_note": "Thêm ghi chú",
+  "enter_note": "Nhập ghi chú",
+  "remove_note": "Xoá ghi chú"
 }

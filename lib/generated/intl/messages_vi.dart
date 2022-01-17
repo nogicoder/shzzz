@@ -22,11 +22,18 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add_note": MessageLookupByLibrary.simpleMessage("Thêm ghi chú"),
         "completed": MessageLookupByLibrary.simpleMessage("Đã hoàn thành"),
+        "create_task": MessageLookupByLibrary.simpleMessage("Tạo công việc"),
+        "enter_note": MessageLookupByLibrary.simpleMessage("Nhập ghi chú"),
+        "enter_task":
+            MessageLookupByLibrary.simpleMessage("Nhập công việc mới"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
         "how_to_call":
             MessageLookupByLibrary.simpleMessage("Tôi có thể gọi bạn là gì?"),
         "lets_go": MessageLookupByLibrary.simpleMessage("Let\'s go"),
+        "min_length_error": MessageLookupByLibrary.simpleMessage(
+            "Tiêu đề tối thiểu là 6 ký tự"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "onboarding_1_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_1_title": MessageLookupByLibrary.simpleMessage(""),
@@ -34,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "onboarding_2_title": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_title": MessageLookupByLibrary.simpleMessage(""),
-        "start_now": MessageLookupByLibrary.simpleMessage("Bắt đầu ngay")
+        "remove_note": MessageLookupByLibrary.simpleMessage("Xoá ghi chú"),
+        "start_now": MessageLookupByLibrary.simpleMessage("Bắt đầu ngay"),
+        "today": MessageLookupByLibrary.simpleMessage("Hôm nay")
       };
 }

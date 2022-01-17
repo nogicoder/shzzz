@@ -22,3 +22,5 @@ class Routes {
     ),
   ];
 }
+
+goCreateTaskScreen() => Get.dialog(CreateTaskScreen(), useSafeArea: false);

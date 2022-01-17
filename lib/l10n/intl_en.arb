@@ -10,5 +10,12 @@
   "how_to_call": "How can I call you?",
   "lets_go": "Let's go",
   "next": "Next",
-  "completed": "Completed"
+  "completed": "Completed",
+  "enter_task": "Enter new task",
+  "create_task": "Create task",
+  "min_length_error": "Minimum title lenght must be 6",
+  "today": "Today",
+  "add_note": "Add note",
+  "enter_note": "Enter note",
+  "remove_note": "Remove note"
 }

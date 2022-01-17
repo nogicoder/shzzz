@@ -35,4 +35,29 @@ class MyDatabase extends _$MyDatabase {
 
   @override
   int get schemaVersion => 1;
+
+  // loads all todo entries
+  Stream<List<Todo>> getTodos() => select(todos).watch();
+
+  Stream<List<Todo>> watchEntriesInCategory(Category c) {
+    return (select(todos)..where((t) => t.category.equals(c.id))).watch();
+  }
+
+  Future<int> addTodo(TodosCompanion entry) {
+    return into(todos).insert(entry);
+  }
+
+  Future<void> insertMultipleTodos(List<TodosCompanion> entries) async {
+    await batch((batch) {
+      batch.insertAll(todos, entries);
+    });
+  }
+
+  Future moveTaskToCategory(Category target, TodosCompanion entry) {
+    return update(todos).replace(entry);
+  }
+
+  Future deleteEntry(Todo entry) {
+    return delete(todos).delete(entry);
+  }
 }

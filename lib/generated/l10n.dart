@@ -169,6 +169,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Enter new task`
+  String get enter_task {
+    return Intl.message(
+      'Enter new task',
+      name: 'enter_task',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create task`
+  String get create_task {
+    return Intl.message(
+      'Create task',
+      name: 'create_task',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Minimum title lenght must be 6`
+  String get min_length_error {
+    return Intl.message(
+      'Minimum title lenght must be 6',
+      name: 'min_length_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today`
+  String get today {
+    return Intl.message(
+      'Today',
+      name: 'today',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add note`
+  String get add_note {
+    return Intl.message(
+      'Add note',
+      name: 'add_note',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter note`
+  String get enter_note {
+    return Intl.message(
+      'Enter note',
+      name: 'enter_note',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove note`
+  String get remove_note {
+    return Intl.message(
+      'Remove note',
+      name: 'remove_note',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

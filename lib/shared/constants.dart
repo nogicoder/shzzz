@@ -15,6 +15,9 @@ class Constants {
   static final kBorderRadius = 4.sp;
   static final kBorderRadiusStandard = BorderRadius.circular(8.sp);
   static final kStadiumBorderRadius = 100.sp;
+  static const MIN_TITLE_LENGTH = 6;
+  static const MAX_TITLE_LENGTH = 32;
+  static const MAX_NOTE_LENGTH = 100;
 }
 
 enum AppEvent { NONE }

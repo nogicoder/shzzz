@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:shzzz/shared/constants.dart';
 import 'package:shzzz/shared/index.dart';
 
 class UITodoItem extends StatelessWidget {

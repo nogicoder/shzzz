@@ -22,11 +22,17 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add_note": MessageLookupByLibrary.simpleMessage("Add note"),
         "completed": MessageLookupByLibrary.simpleMessage("Completed"),
+        "create_task": MessageLookupByLibrary.simpleMessage("Create task"),
+        "enter_note": MessageLookupByLibrary.simpleMessage("Enter note"),
+        "enter_task": MessageLookupByLibrary.simpleMessage("Enter new task"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
         "how_to_call":
             MessageLookupByLibrary.simpleMessage("How can I call you?"),
         "lets_go": MessageLookupByLibrary.simpleMessage("Let\'s go"),
+        "min_length_error": MessageLookupByLibrary.simpleMessage(
+            "Minimum title lenght must be 6"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
         "onboarding_1_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_1_title": MessageLookupByLibrary.simpleMessage(""),
@@ -34,6 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "onboarding_2_title": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_title": MessageLookupByLibrary.simpleMessage(""),
-        "start_now": MessageLookupByLibrary.simpleMessage("Start now")
+        "remove_note": MessageLookupByLibrary.simpleMessage("Remove note"),
+        "start_now": MessageLookupByLibrary.simpleMessage("Start now"),
+        "today": MessageLookupByLibrary.simpleMessage("Today")
       };
 }
