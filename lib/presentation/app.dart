@@ -18,7 +18,7 @@ class TaskApp extends GetView<UserConfigService> {
       builder: () => GetMaterialApp(
         title: APP_TITLE,
         locale: Locale(controller.lang),
-        themeMode: controller.themeMode,
+        themeMode: controller.isLightTheme ? ThemeMode.light : ThemeMode.dark,
         theme: UITheme.getLightTheme(),
         darkTheme: UITheme.getDarkTheme(),
         getPages: Routes.getPages,

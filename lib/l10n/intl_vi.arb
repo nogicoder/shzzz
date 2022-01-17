@@ -26,5 +26,8 @@
   "success_adding_task": "Thêm công việc thành công",
   "success_updating_task": "Sửa công việc thành công",
   "update": "Cập nhật",
-  "success_deleting_task": "Xoá công việc thành công"
+  "success_deleting_task": "Xoá công việc thành công",
+  "home": "Trang chủ",
+  "ongoing": "Chưa hoàn thành",
+  "Completed": "Đã hoàn thành"
 }

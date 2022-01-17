@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Completed": MessageLookupByLibrary.simpleMessage("Completed"),
         "add_note": MessageLookupByLibrary.simpleMessage("Add note"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "completed": MessageLookupByLibrary.simpleMessage("Completed"),
@@ -32,6 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_note": MessageLookupByLibrary.simpleMessage("Enter note"),
         "enter_task": MessageLookupByLibrary.simpleMessage("Enter new task"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+        "home": MessageLookupByLibrary.simpleMessage("Home"),
         "how_to_call":
             MessageLookupByLibrary.simpleMessage("How can I call you?"),
         "lets_go": MessageLookupByLibrary.simpleMessage("Let\'s go"),
@@ -45,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onboarding_2_title": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_title": MessageLookupByLibrary.simpleMessage(""),
+        "ongoing": MessageLookupByLibrary.simpleMessage("Ongoing"),
         "please_check_input": MessageLookupByLibrary.simpleMessage(
             "Please check your input again!"),
         "remove_note": MessageLookupByLibrary.simpleMessage("Remove note"),

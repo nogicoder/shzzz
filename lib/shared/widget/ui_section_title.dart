@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shzzz/shared/index.dart';
 
 class UISectionTitle extends StatelessWidget {
@@ -20,7 +21,7 @@ class UISectionTitle extends StatelessWidget {
             horizontal: Constants.kInnerPadding,
             vertical: Constants.kTinyPadding),
         decoration: BoxDecoration(
-          color: Colors.blueGrey,
+          color: Get.theme.colorScheme.secondary,
           borderRadius: Constants.kBorderRadiusStandard,
         ),
         child: Row(

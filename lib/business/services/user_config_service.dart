@@ -18,11 +18,11 @@ class UserConfigService extends GetxService {
     storage.updateLang(lang);
   }
 
-  ThemeMode get themeMode => storage.getTheme();
+  bool get isLightTheme => storage.getIsLightTheme() ?? false;
 
-  setTheme(bool isLight) {
-    Get.changeThemeMode(isLight ? ThemeMode.light : ThemeMode.dark);
-    storage.changeTheme(isLight);
+  setTheme() {
+    Get.changeThemeMode(isLightTheme ? ThemeMode.dark : ThemeMode.light);
+    storage.changeTheme(!isLightTheme);
   }
 
   UserInfo? get userInfo {

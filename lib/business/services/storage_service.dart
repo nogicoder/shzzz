@@ -25,12 +25,7 @@ class StorageService extends GetxService {
 
   void updateLang(String lang) => prefs.setString(keyLanguageCode, lang);
 
-  ThemeMode getTheme() {
-    if (prefs.getBool(keyLight) ?? true) {
-      return ThemeMode.light;
-    }
-    return ThemeMode.dark;
-  }
+  bool? getIsLightTheme() => prefs.getBool(keyLight);
 
   void changeTheme(bool value) => prefs.setBool(keyLight, value);
 

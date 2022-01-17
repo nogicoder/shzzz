@@ -26,5 +26,8 @@
   "success_adding_task": "Add task successfully",
   "success_updating_task": "Update task successfully",
   "update": "Update",
-  "success_deleting_task": "Delete task successfully"
+  "success_deleting_task": "Delete task successfully",
+  "home": "Home",
+  "ongoing": "Ongoing",
+  "Completed": "Completed"
 }

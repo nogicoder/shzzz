@@ -126,6 +126,7 @@ class CreateTaskScreen extends GetView<CreateTaskController> {
       padding: Constants.kHorizontalPaddingStandard,
       child: Obx(
         () => TextField(
+          autofocus: true,
           controller: controller.textController,
           focusNode: controller.focusNode,
           onChanged: (value) {

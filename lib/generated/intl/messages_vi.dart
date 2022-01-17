@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "Completed": MessageLookupByLibrary.simpleMessage("Đã hoàn thành"),
         "add_note": MessageLookupByLibrary.simpleMessage("Thêm ghi chú"),
         "cancel": MessageLookupByLibrary.simpleMessage("Huỷ"),
         "completed": MessageLookupByLibrary.simpleMessage("Đã hoàn thành"),
@@ -33,6 +34,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "enter_task":
             MessageLookupByLibrary.simpleMessage("Nhập công việc mới"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+        "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
         "how_to_call":
             MessageLookupByLibrary.simpleMessage("Tôi có thể gọi bạn là gì?"),
         "lets_go": MessageLookupByLibrary.simpleMessage("Let\'s go"),
@@ -46,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "onboarding_2_title": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_title": MessageLookupByLibrary.simpleMessage(""),
+        "ongoing": MessageLookupByLibrary.simpleMessage("Chưa hoàn thành"),
         "please_check_input": MessageLookupByLibrary.simpleMessage(
             "Vui lòng kiểm tra lại thông tin đã nhập"),
         "remove_note": MessageLookupByLibrary.simpleMessage("Xoá ghi chú"),
