@@ -22,6 +22,10 @@ dependencies:
   permission_handler: any
   flutter_svg_provider: any
   share: ^2.0.4
+  drift: ^1.3.0
+  sqlite3_flutter_libs: ^0.5.0
+  path_provider: ^2.0.0
+  path: ^1.8.0
 
   # UI package
   cupertino_icons: ^1.0.2
@@ -50,11 +54,13 @@ dev_dependencies:
       url: https://github.com/Davenchy/flutter_launcher_icons.git
       ref: fixMinSdkParseFlutter2.8
 
+  drift_dev: ^1.3.0
+  build_runner: ^2.1.7
 
 flutter_icons:
   android: true
   ios: true
-  image_path: assets/launcher.png
+  image_path: assets/ic_launcher.png
 
 flutter:
   uses-material-design: true

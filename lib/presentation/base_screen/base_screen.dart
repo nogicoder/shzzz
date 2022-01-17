@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:expandable/expandable.dart';
 
-import 'package:shzzz/business/services/index.dart';
 import 'package:shzzz/shared/index.dart';
 
 class BaseScreen extends StatelessWidget {
@@ -37,8 +36,11 @@ class BaseScreen extends StatelessWidget {
         tabBuilder: (context, index) {
           switch (index) {
             case 0:
-            default:
               return UITabLayout(child: _buildFirstTab());
+            case 1:
+            case 2:
+            default:
+              return UITabLayout(child: _buildItemList());
           }
         },
       ),
@@ -106,7 +108,22 @@ class BaseScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildItem(int index) {
-    return Container();
+  Widget _buildItemList() {
+    return Material(
+      child: Padding(
+        padding: Constants.kHorizontalPaddingStandard,
+        child: Column(
+          children: List<Widget>.generate(
+            10,
+            (index) => Padding(
+              padding: index != 10
+                  ? EdgeInsets.only(bottom: Constants.kSmallPadding)
+                  : EdgeInsets.zero,
+              child: UITodoItem(),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
