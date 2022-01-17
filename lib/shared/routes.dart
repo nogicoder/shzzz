@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:shzzz/data/database/todo_table.dart';
 import 'package:shzzz/presentation/index.dart';
 
 class Routes {
@@ -17,10 +18,13 @@ class Routes {
       page: () => RegisterScreen(),
     ),
     GetPage(
-      name: Routes.BASE_SCREEN,
-      page: () => BaseScreen(),
-    ),
+        name: Routes.BASE_SCREEN,
+        page: () => BaseScreen(),
+        binding: BindingsBuilder.put(() => BaseScreenController())),
   ];
 }
 
 goCreateTaskScreen() => Get.dialog(CreateTaskScreen(), useSafeArea: false);
+
+goUpdateTaskScreen(Todo todo) =>
+    Get.dialog(CreateTaskScreen(todo: todo), useSafeArea: false);

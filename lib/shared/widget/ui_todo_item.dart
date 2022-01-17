@@ -1,30 +1,75 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:get/get.dart';
+import 'package:shzzz/business/repository/repository.dart';
+import 'package:shzzz/data/database/todo_table.dart';
 import 'package:shzzz/shared/index.dart';
 
+class UITodoItemController extends GetxController {
+  void updateStatus(Todo todo) => repository.updateCompletion(todo);
+
+  void deleteTodo(Todo todo) {
+    repository.deleteTodo(todo);
+    Get.snackbar(APP_TITLE, tr().success_deleting_task);
+  }
+}
+
 class UITodoItem extends StatelessWidget {
-  const UITodoItem({Key? key}) : super(key: key);
+  final Todo todo;
+  UITodoItem({Key? key, required this.todo}) : super(key: key);
+
+  final UITodoItemController controller = UITodoItemController();
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color: Colors.blueGrey,
-        borderRadius: Constants.kBorderRadiusStandard,
-      ),
-      child: Row(
-        children: [
-          Checkbox(
-            value: false,
-            onChanged: (value) {},
-            shape: CircleBorder(
-              side: BorderSide(color: Colors.grey),
-            ),
+    return InkWell(
+      onTap: () => goUpdateTaskScreen(todo),
+      child: Slidable(
+        endActionPane: ActionPane(motion: ScrollMotion(), children: [
+          SlidableAction(
+            flex: 2,
+            onPressed: (context) => controller.deleteTodo(todo),
+            backgroundColor: Colors.red,
+            foregroundColor: Colors.white,
+            icon: CupertinoIcons.delete,
           ),
-          Text(
-            'Content',
-            style: UITextStyle.bodyStyle(color: Colors.white),
+        ]),
+        child: Container(
+          padding: EdgeInsets.all(Constants.kSmallPadding),
+          decoration: BoxDecoration(
+            color: Get.theme.cardColor,
+            borderRadius: Constants.kBorderRadiusStandard,
           ),
-        ],
+          child: Row(
+            children: [
+              Transform.scale(
+                scale: 1.2,
+                child: Checkbox(
+                  value: todo.isCompleted,
+                  onChanged: (value) => controller.updateStatus(todo),
+                  shape: CircleBorder(),
+                  fillColor: MaterialStateProperty.all(
+                    (todo.isCompleted ?? false)
+                        ? Get.theme.colorScheme.surface
+                        : Get.theme.colorScheme.secondary,
+                  ),
+                ),
+              ),
+              Text(
+                todo.title,
+                style: UITextStyle.bodyStyle(
+                  color: (todo.isCompleted ?? false)
+                      ? Get.theme.colorScheme.surface
+                      : null,
+                ).copyWith(
+                    decoration: (todo.isCompleted ?? false)
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

@@ -17,5 +17,14 @@
   "today": "Today",
   "add_note": "Add note",
   "enter_note": "Enter note",
-  "remove_note": "Remove note"
+  "remove_note": "Remove note",
+  "please_check_input": "Please check your input again!",
+  "ok": "Okay",
+  "cancel": "Cancel",
+  "confirm": "Confirm",
+  "developing_feature": "Feature is in development",
+  "success_adding_task": "Add task successfully",
+  "success_updating_task": "Update task successfully",
+  "update": "Update",
+  "success_deleting_task": "Delete task successfully"
 }

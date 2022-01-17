@@ -17,5 +17,14 @@
   "today": "Hôm nay",
   "add_note": "Thêm ghi chú",
   "enter_note": "Nhập ghi chú",
-  "remove_note": "Xoá ghi chú"
+  "remove_note": "Xoá ghi chú",
+  "please_check_input": "Vui lòng kiểm tra lại thông tin đã nhập",
+  "ok": "Đồng ý",
+  "cancel": "Huỷ",
+  "confirm": "Xác nhận",
+  "developing_feature": "Chức năng đang phát triển",
+  "success_adding_task": "Thêm công việc thành công",
+  "success_updating_task": "Sửa công việc thành công",
+  "update": "Cập nhật",
+  "success_deleting_task": "Xoá công việc thành công"
 }

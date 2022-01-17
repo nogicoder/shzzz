@@ -37,7 +37,7 @@ class UITabLayout extends StatelessWidget {
           ),
         ),
         Positioned(
-          bottom: 30,
+          bottom: 100,
           right: 30,
           child: FloatingActionButton(
             child: Icon(Icons.add),

@@ -2,11 +2,29 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:expandable/expandable.dart';
 
 import 'package:shzzz/shared/index.dart';
+import 'package:shzzz/data/database/todo_table.dart';
+import 'package:shzzz/business/repository/repository.dart';
+import 'package:shzzz/presentation/base_screen/components/index.dart';
 
-class BaseScreen extends StatelessWidget {
+class BaseScreenController extends GetxController {
+  var completedTodos = <Todo>[].obs;
+  var ongoingTodos = <Todo>[].obs;
+
+  @override
+  void onInit() {
+    repository.getTodosWithStatus().listen((event) {
+      ongoingTodos.value = event;
+    });
+    repository.getTodosWithStatus(isCompleted: true).listen((event) {
+      completedTodos.value = event;
+    });
+    super.onInit();
+  }
+}
+
+class BaseScreen extends GetView<BaseScreenController> {
   const BaseScreen({Key? key}) : super(key: key);
 
   @override
@@ -15,7 +33,6 @@ class BaseScreen extends StatelessWidget {
       onWillPop: () async => false,
       child: CupertinoTabScaffold(
         tabBar: CupertinoTabBar(
-          backgroundColor: Get.theme.primaryColor,
           activeColor: Get.theme.colorScheme.surface,
           iconSize: 24,
           items: [
@@ -36,90 +53,36 @@ class BaseScreen extends StatelessWidget {
         tabBuilder: (context, index) {
           switch (index) {
             case 0:
-              return UITabLayout(child: _buildFirstTab());
+              return UITabLayout(
+                  child: HomeTab(
+                ongoingTodos: controller.ongoingTodos,
+                completedTodos: controller.completedTodos,
+              ));
             case 1:
+              return UITabLayout(
+                  child: _buildItemList(controller.ongoingTodos));
             case 2:
             default:
-              return UITabLayout(child: _buildItemList());
+              return UITabLayout(
+                  child: _buildItemList(controller.completedTodos));
           }
         },
       ),
     );
   }
 
-  Widget _buildFirstTab() {
-    return Material(
-      child: CustomScrollView(
-        slivers: [
-          SliverPadding(
-            padding: Constants.kHorizontalPaddingStandard,
-            sliver: SliverList(
-              delegate: SliverChildListDelegate(
-                List<Widget>.generate(
-                  10,
-                  (index) => Padding(
-                    padding: index != 10
-                        ? EdgeInsets.only(bottom: Constants.kSmallPadding)
-                        : EdgeInsets.zero,
-                    child: UITodoItem(),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: ExpandableNotifier(
-              child: Column(
-                children: [
-                  Expandable(
-                    collapsed: ExpandableButton(
-                      child: UISectionTitle(title: tr().completed),
-                    ),
-                    expanded: Column(
-                      children: [
-                        ExpandableButton(
-                          child: UISectionTitle(title: tr().completed),
-                        ),
-                        Padding(
-                          padding: Constants.kHorizontalPaddingStandard,
-                          child: ListBody(
-                            children: List<Widget>.generate(
-                              10,
-                              (index) => Padding(
-                                padding: index != 10
-                                    ? EdgeInsets.only(
-                                        bottom: Constants.kSmallPadding)
-                                    : EdgeInsets.zero,
-                                child: UITodoItem(),
-                              ),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(child: SizedBox(height: 110)),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildItemList() {
+  Widget _buildItemList(List<Todo> todos) {
     return Material(
       child: Padding(
         padding: Constants.kHorizontalPaddingStandard,
         child: Column(
           children: List<Widget>.generate(
-            10,
+            todos.length,
             (index) => Padding(
-              padding: index != 10
+              padding: index != todos.length
                   ? EdgeInsets.only(bottom: Constants.kSmallPadding)
                   : EdgeInsets.zero,
-              child: UITodoItem(),
+              child: UITodoItem(todo: todos[index]),
             ),
           ),
         ),

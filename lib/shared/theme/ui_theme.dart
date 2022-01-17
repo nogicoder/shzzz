@@ -5,7 +5,7 @@ class UITheme {
     final baseTheme = ThemeData.light();
     return baseTheme.copyWith(
       primaryColor: const Color(0xFF0B235E),
-      // backgroundColor: const Color(0xFF020417),
+      backgroundColor: const Color(0xFFF9FBFF),
       colorScheme: baseTheme.colorScheme.copyWith(
         secondary: const Color(0xFF2D76EC),
         surface: const Color(0xFFb8c0d3),
@@ -14,7 +14,7 @@ class UITheme {
       textTheme: baseTheme.textTheme.copyWith(
         bodyText2: baseTheme.textTheme.bodyText2?.copyWith(
           color: const Color(0xFF020417),
-          fontSize: 14,
+          fontSize: 16,
         ),
         headline4: baseTheme.textTheme.headline6
             ?.copyWith(color: const Color(0xFF373b5e)),

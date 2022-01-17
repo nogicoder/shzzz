@@ -23,8 +23,12 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_note": MessageLookupByLibrary.simpleMessage("Thêm ghi chú"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Huỷ"),
         "completed": MessageLookupByLibrary.simpleMessage("Đã hoàn thành"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Xác nhận"),
         "create_task": MessageLookupByLibrary.simpleMessage("Tạo công việc"),
+        "developing_feature":
+            MessageLookupByLibrary.simpleMessage("Chức năng đang phát triển"),
         "enter_note": MessageLookupByLibrary.simpleMessage("Nhập ghi chú"),
         "enter_task":
             MessageLookupByLibrary.simpleMessage("Nhập công việc mới"),
@@ -35,14 +39,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "min_length_error": MessageLookupByLibrary.simpleMessage(
             "Tiêu đề tối thiểu là 6 ký tự"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "ok": MessageLookupByLibrary.simpleMessage("Đồng ý"),
         "onboarding_1_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_1_title": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_2_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_2_title": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_title": MessageLookupByLibrary.simpleMessage(""),
+        "please_check_input": MessageLookupByLibrary.simpleMessage(
+            "Vui lòng kiểm tra lại thông tin đã nhập"),
         "remove_note": MessageLookupByLibrary.simpleMessage("Xoá ghi chú"),
         "start_now": MessageLookupByLibrary.simpleMessage("Bắt đầu ngay"),
-        "today": MessageLookupByLibrary.simpleMessage("Hôm nay")
+        "success_adding_task":
+            MessageLookupByLibrary.simpleMessage("Thêm công việc thành công"),
+        "success_deleting_task":
+            MessageLookupByLibrary.simpleMessage("Xoá công việc thành công"),
+        "success_updating_task":
+            MessageLookupByLibrary.simpleMessage("Sửa công việc thành công"),
+        "today": MessageLookupByLibrary.simpleMessage("Hôm nay"),
+        "update": MessageLookupByLibrary.simpleMessage("Cập nhật")
       };
 }

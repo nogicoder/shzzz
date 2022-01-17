@@ -3,9 +3,11 @@ import 'package:shzzz/shared/index.dart';
 
 class UISectionTitle extends StatelessWidget {
   final String? title;
+  final bool isExpanded;
   const UISectionTitle({
     Key? key,
     this.title,
+    this.isExpanded = true,
   }) : super(key: key);
 
   @override
@@ -30,7 +32,11 @@ class UISectionTitle extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            Icon(Icons.keyboard_arrow_down, color: Colors.white),
+            Icon(
+                isExpanded
+                    ? Icons.keyboard_arrow_down
+                    : Icons.keyboard_arrow_up,
+                color: Colors.white),
           ],
         ),
       ),

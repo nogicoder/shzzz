@@ -23,8 +23,12 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "add_note": MessageLookupByLibrary.simpleMessage("Add note"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "completed": MessageLookupByLibrary.simpleMessage("Completed"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "create_task": MessageLookupByLibrary.simpleMessage("Create task"),
+        "developing_feature":
+            MessageLookupByLibrary.simpleMessage("Feature is in development"),
         "enter_note": MessageLookupByLibrary.simpleMessage("Enter note"),
         "enter_task": MessageLookupByLibrary.simpleMessage("Enter new task"),
         "hello": MessageLookupByLibrary.simpleMessage("Hello"),
@@ -34,14 +38,24 @@ class MessageLookup extends MessageLookupByLibrary {
         "min_length_error": MessageLookupByLibrary.simpleMessage(
             "Minimum title lenght must be 6"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "ok": MessageLookupByLibrary.simpleMessage("Okay"),
         "onboarding_1_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_1_title": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_2_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_2_title": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_desc": MessageLookupByLibrary.simpleMessage(""),
         "onboarding_3_title": MessageLookupByLibrary.simpleMessage(""),
+        "please_check_input": MessageLookupByLibrary.simpleMessage(
+            "Please check your input again!"),
         "remove_note": MessageLookupByLibrary.simpleMessage("Remove note"),
         "start_now": MessageLookupByLibrary.simpleMessage("Start now"),
-        "today": MessageLookupByLibrary.simpleMessage("Today")
+        "success_adding_task":
+            MessageLookupByLibrary.simpleMessage("Add task successfully"),
+        "success_deleting_task":
+            MessageLookupByLibrary.simpleMessage("Delete task successfully"),
+        "success_updating_task":
+            MessageLookupByLibrary.simpleMessage("Update task successfully"),
+        "today": MessageLookupByLibrary.simpleMessage("Today"),
+        "update": MessageLookupByLibrary.simpleMessage("Update")
       };
 }

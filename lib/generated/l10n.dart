@@ -239,6 +239,96 @@ class S {
       args: [],
     );
   }
+
+  /// `Please check your input again!`
+  String get please_check_input {
+    return Intl.message(
+      'Please check your input again!',
+      name: 'please_check_input',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Okay`
+  String get ok {
+    return Intl.message(
+      'Okay',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Feature is in development`
+  String get developing_feature {
+    return Intl.message(
+      'Feature is in development',
+      name: 'developing_feature',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add task successfully`
+  String get success_adding_task {
+    return Intl.message(
+      'Add task successfully',
+      name: 'success_adding_task',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update task successfully`
+  String get success_updating_task {
+    return Intl.message(
+      'Update task successfully',
+      name: 'success_updating_task',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update`
+  String get update {
+    return Intl.message(
+      'Update',
+      name: 'update',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete task successfully`
+  String get success_deleting_task {
+    return Intl.message(
+      'Delete task successfully',
+      name: 'success_deleting_task',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

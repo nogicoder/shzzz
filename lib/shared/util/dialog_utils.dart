@@ -4,9 +4,10 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shzzz/shared/index.dart';
 
 class DialogUtil {
-  static String defaultTitle = "Task.";
+  static String defaultTitle = APP_TITLE;
   static Future<T?> confirm<T>(
     Widget content, {
     String? title,
@@ -41,7 +42,7 @@ class DialogUtil {
           content: content,
           actions: <Widget>[
             TextButton(
-                child: Text(cancelText ?? 'Huỷ'),
+                child: Text(cancelText ?? tr().cancel),
                 onPressed: () {
                   Get.back();
                   if (onCancel != null) {
@@ -49,7 +50,7 @@ class DialogUtil {
                   }
                 }),
             TextButton(
-              child: Text(submitText ?? 'Đồng ý'),
+              child: Text(submitText ?? tr().ok),
               onPressed: () {
                 Get.back();
                 if (onSubmit != null) {
@@ -140,7 +141,7 @@ class DialogUtil {
               : content,
           actions: <Widget>[
             TextButton(
-              child: Text(submit ?? 'Đồng ý'),
+              child: Text(submit ?? tr().ok),
               onPressed: () {
                 Get.back();
                 if (onSubmit != null) {
@@ -167,7 +168,7 @@ class DialogUtil {
       content: content,
       actions: <Widget>[
         CupertinoDialogAction(
-            child: Text(cancelText ?? 'Huỷ'),
+            child: Text(cancelText ?? tr().cancel),
             onPressed: () {
               Get.back();
               if (onCancel != null) {
@@ -175,7 +176,7 @@ class DialogUtil {
               }
             }),
         CupertinoDialogAction(
-          child: Text(submitText ?? 'Đồng ý'),
+          child: Text(submitText ?? tr().ok),
           onPressed: () {
             Get.back();
             if (onSubmit != null) {
@@ -219,7 +220,7 @@ class DialogUtil {
           : content,
       actions: <Widget>[
         CupertinoDialogAction(
-          child: Text(submit ?? 'Đồng ý'),
+          child: Text(submit ?? tr().ok),
           onPressed: () {
             Get.back();
             if (onSubmit != null) {
@@ -232,7 +233,7 @@ class DialogUtil {
   }
 
   static comingSoonMessage(BuildContext context) {
-    DialogUtil.alert("Chức năng đang phát triển vui lòng thử lại sau.");
+    DialogUtil.alert(tr().developing_feature);
   }
 
   static showFlushBar(String message,
@@ -284,7 +285,7 @@ class DialogUtil {
                   Navigator.of(popupContext).pop(true);
                 },
                 child: Text(
-                  submitText ?? "Xác nhận",
+                  submitText ?? tr().confirm,
                   style: TextStyle(
                     color: submitColor ?? Color(0XFF007AFF),
                     fontWeight: FontWeight.w400,
@@ -297,7 +298,7 @@ class DialogUtil {
                 Navigator.of(popupContext).pop();
               },
               child: Text(
-                cancelText ?? "Hủy",
+                cancelText ?? tr().cancel,
                 style: TextStyle(
                   color: cancelColor ?? Color(0XFF007AFF),
                   fontWeight: FontWeight.w500,
