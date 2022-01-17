@@ -41,7 +41,7 @@ class TodoChart extends GetView<BaseScreenController> {
         topTitles: SideTitles(showTitles: false),
         leftTitles: leftTitles(
           getTitles: (value) {
-            return value.toString();
+            return '';
           },
         ),
       );
@@ -66,15 +66,7 @@ class TodoChart extends GetView<BaseScreenController> {
 
   FlGridData get gridData => FlGridData(show: false);
 
-  FlBorderData get borderData => FlBorderData(
-        show: true,
-        border: const Border(
-          bottom: BorderSide(color: Color(0xff4e4965), width: 4),
-          left: BorderSide(color: Colors.transparent),
-          right: BorderSide(color: Colors.transparent),
-          top: BorderSide(color: Colors.transparent),
-        ),
-      );
+  FlBorderData get borderData => FlBorderData(show: false);
 
   LineChartBarData get lineChartBarData1_1 => LineChartBarData(
         isCurved: true,

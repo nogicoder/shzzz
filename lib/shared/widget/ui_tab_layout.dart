@@ -18,7 +18,7 @@ class UITabLayout extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            top: 150,
+            top: 170,
             child: child,
           ),
           Positioned(
@@ -32,7 +32,7 @@ class UITabLayout extends StatelessWidget {
                   child: Icon(
                     Icons.menu,
                     color: Get.theme.primaryColor,
-                    size: 30,
+                    size: 40,
                   ),
                 ),
                 SizedBox(height: Constants.kOuterPadding),

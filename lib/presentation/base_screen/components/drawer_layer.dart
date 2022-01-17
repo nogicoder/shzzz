@@ -39,7 +39,13 @@ class DrawerLayer extends GetView<BaseScreenController> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          CircleAvatar(radius: 60),
+          Container(
+              padding: EdgeInsets.all(Constants.kTinyPadding),
+              decoration: BoxDecoration(
+                border: Border.all(color: Get.theme.highlightColor, width: 5),
+                shape: BoxShape.circle,
+              ),
+              child: CircleAvatar(radius: 50)),
           SizedBox(height: 40),
           Text(
             userConfigService.userInfo?.name ?? '',
