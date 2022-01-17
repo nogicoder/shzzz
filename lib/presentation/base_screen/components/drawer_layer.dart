@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shzzz/business/services/index.dart';
-import 'package:shzzz/shared/constants.dart';
+import 'package:shzzz/presentation/base_screen/base_screen.dart';
 import 'package:shzzz/shared/index.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DrawerLayerController extends GetxController {
   var packageInfo = ''.obs;
@@ -22,14 +23,15 @@ class DrawerLayerController extends GetxController {
   }
 }
 
-class DrawerLayer extends StatelessWidget {
+//ignore: must_be_immutable
+class DrawerLayer extends GetView<BaseScreenController> {
   DrawerLayer({Key? key}) : super(key: key);
 
-  late DrawerLayerController controller;
+  late DrawerLayerController drawerController;
 
   @override
   Widget build(BuildContext context) {
-    controller = Get.put(DrawerLayerController());
+    drawerController = Get.put(DrawerLayerController());
     return Container(
       color: Get.theme.primaryColor,
       alignment: Alignment.centerLeft,
@@ -38,7 +40,7 @@ class DrawerLayer extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           CircleAvatar(radius: 60),
-          SizedBox(height: 30),
+          SizedBox(height: 40),
           Text(
             userConfigService.userInfo?.name ?? '',
             style: UITextStyle.headline4()?.copyWith(
@@ -53,18 +55,17 @@ class DrawerLayer extends StatelessWidget {
           SizedBox(height: 30),
           Divider(color: Get.theme.colorScheme.secondary),
           SizedBox(height: 30),
-          Text(
-            'Completed tasks: ',
-            style: UITextStyle.bodyStyle(color: Colors.white),
-          ),
+          Obx(() => _buildInfoRow(
+              '${tr().completed}: ', '${controller.completedTodos.length}')),
           SizedBox(height: 30),
-          Text('Ongoing tasks: ',
-              style: UITextStyle.bodyStyle(color: Colors.white)),
-          SizedBox(height: 30),
+          Obx(() => _buildInfoRow(
+              '${tr().ongoing}: ', '${controller.ongoingTodos.length}')),
+          SizedBox(height: 40),
+          TodoChart(),
           Spacer(),
           Obx(
             () => Text(
-              'Version: ${controller.packageInfo.value}',
+              'v${drawerController.packageInfo.value}',
               style: UITextStyle.bodyStyle(color: Colors.white),
             ),
           )
@@ -77,13 +78,13 @@ class DrawerLayer extends StatelessWidget {
     return InkWell(
       onTap: () {
         userConfigService.setTheme();
-        controller.reflectTheme();
+        drawerController.reflectTheme();
       },
       child: Row(
         children: [
           Obx(
             () => Icon(
-              controller.isLightTheme.value
+              drawerController.isLightTheme.value
                   ? Icons.wb_sunny_outlined
                   : Icons.nightlight_round,
               color: Get.theme.colorScheme.secondaryVariant,
@@ -92,7 +93,7 @@ class DrawerLayer extends StatelessWidget {
           ),
           SizedBox(width: Constants.kOuterPadding),
           Text(
-            'Change theme',
+            tr().change_theme,
             style: UITextStyle.subtitle1()?.copyWith(color: Colors.white),
           ),
         ],
@@ -102,10 +103,7 @@ class DrawerLayer extends StatelessWidget {
 
   Widget _buildSupportButton() {
     return InkWell(
-      onTap: () {
-        userConfigService.setTheme();
-        controller.reflectTheme();
-      },
+      onTap: () => launch('mailto:$EMAIL_SUPPORT'),
       child: Row(
         children: [
           Icon(
@@ -115,8 +113,26 @@ class DrawerLayer extends StatelessWidget {
           ),
           SizedBox(width: Constants.kOuterPadding),
           Text(
-            'Contact support',
+            tr().contact_support,
             style: UITextStyle.subtitle1()?.copyWith(color: Colors.white),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildInfoRow(String title, String value) {
+    return RichText(
+      text: TextSpan(
+        style: UITextStyle.bodyStyle(color: Colors.white),
+        children: [
+          TextSpan(text: title),
+          TextSpan(
+            text: value,
+            style: UITextStyle.bodyStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         ],
       ),

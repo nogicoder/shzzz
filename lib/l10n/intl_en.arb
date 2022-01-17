@@ -29,5 +29,6 @@
   "success_deleting_task": "Delete task successfully",
   "home": "Home",
   "ongoing": "Ongoing",
-  "Completed": "Completed"
+  "change_theme": "Change theme",
+  "contact_support": "Contact support"
 }

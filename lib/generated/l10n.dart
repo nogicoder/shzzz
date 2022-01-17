@@ -350,11 +350,21 @@ class S {
     );
   }
 
-  /// `Completed`
-  String get Completed {
+  /// `Change theme`
+  String get change_theme {
     return Intl.message(
-      'Completed',
-      name: 'Completed',
+      'Change theme',
+      name: 'change_theme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact support`
+  String get contact_support {
+    return Intl.message(
+      'Contact support',
+      name: 'contact_support',
       desc: '',
       args: [],
     );

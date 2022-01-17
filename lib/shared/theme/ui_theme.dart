@@ -6,6 +6,7 @@ class UITheme {
     return baseTheme.copyWith(
       primaryColor: const Color(0xFF0B235E),
       backgroundColor: const Color(0xFFF9FBFF),
+      highlightColor: const Color(0xFFD916E4),
       colorScheme: baseTheme.colorScheme.copyWith(
         secondary: const Color(0xFF2D76EC),
         secondaryVariant: const Color(0xFF5F72A6),

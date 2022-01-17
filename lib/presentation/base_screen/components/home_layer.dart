@@ -2,36 +2,17 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:shzzz/presentation/base_screen/base_screen.dart';
 
 import 'package:shzzz/shared/index.dart';
 import 'package:shzzz/data/database/todo_table.dart';
-import 'package:shzzz/business/repository/repository.dart';
 import 'package:shzzz/presentation/base_screen/components/index.dart';
 
-class HomeLayerController extends GetxController {
-  var completedTodos = <Todo>[].obs;
-  var ongoingTodos = <Todo>[].obs;
-
-  @override
-  void onInit() {
-    repository.getTodosWithStatus().listen((event) {
-      ongoingTodos.value = event;
-    });
-    repository.getTodosWithStatus(isCompleted: true).listen((event) {
-      completedTodos.value = event;
-    });
-    super.onInit();
-  }
-}
-
-class HomeLayer extends StatelessWidget {
+class HomeLayer extends GetView<BaseScreenController> {
   HomeLayer({Key? key}) : super(key: key);
-
-  late HomeLayerController controller;
 
   @override
   Widget build(BuildContext context) {
-    controller = Get.put(HomeLayerController());
     return ClipRRect(
       borderRadius: BorderRadius.circular(30),
       child: CupertinoTabScaffold(

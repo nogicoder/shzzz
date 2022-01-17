@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+
+import 'package:shzzz/business/repository/repository.dart';
+import 'package:shzzz/data/database/todo_table.dart';
 import 'package:shzzz/presentation/base_screen/components/index.dart';
-import 'package:shzzz/shared/constants.dart';
 
 class BaseScreenController extends GetxController
     with GetSingleTickerProviderStateMixin {
@@ -11,6 +13,20 @@ class BaseScreenController extends GetxController
   void toggle() => animationController.isDismissed
       ? animationController.forward()
       : animationController.reverse();
+
+  var completedTodos = <Todo>[].obs;
+  var ongoingTodos = <Todo>[].obs;
+
+  @override
+  void onInit() {
+    repository.getTodosWithStatus().listen((event) {
+      ongoingTodos.value = event;
+    });
+    repository.getTodosWithStatus(isCompleted: true).listen((event) {
+      completedTodos.value = event;
+    });
+    super.onInit();
+  }
 }
 
 class BaseScreen extends GetView<BaseScreenController> {

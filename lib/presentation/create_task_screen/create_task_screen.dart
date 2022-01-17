@@ -49,6 +49,7 @@ class CreateTaskController extends GetxController {
   }
 }
 
+//ignore: must_be_immutable
 class CreateTaskScreen extends GetView<CreateTaskController> {
   final Todo? todo;
   CreateTaskScreen({Key? key, this.todo}) : super(key: key);

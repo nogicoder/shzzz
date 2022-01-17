@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:expandable/expandable.dart';
 import 'package:get/get.dart';
-import 'package:shzzz/business/repository/repository.dart';
-import 'package:shzzz/data/database/todo_table.dart';
 
 import 'package:shzzz/shared/index.dart';
+import 'package:shzzz/data/database/todo_table.dart';
 
 class HomeTab extends StatelessWidget {
   final List<Todo> ongoingTodos;
