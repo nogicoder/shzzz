@@ -42,18 +42,18 @@ class UITabLayout extends StatelessWidget {
                         size: 40,
                       ),
                     ),
-                    Obx(
-                      () {
-                        return InkWell(
-                          onTap: userConfigService.updateLocale,
-                          child: _locale == LOCALE_VI
-                              ? Image.asset(ImageAssets.flag_vi,
-                                  width: 40, height: 40)
-                              : Image.asset(ImageAssets.flag_en,
-                                  width: 30, height: 30),
-                        );
-                      },
-                    ),
+                    // Obx(
+                    //   () {
+                    //     return InkWell(
+                    //       onTap: userConfigService.updateLocale,
+                    //       child: _locale == LOCALE_VI
+                    //           ? Image.asset(ImageAssets.flag_vi,
+                    //               width: 40, height: 40)
+                    //           : Image.asset(ImageAssets.flag_en,
+                    //               width: 30, height: 30),
+                    //     );
+                    //   },
+                    // ),
                   ],
                 ),
                 SizedBox(height: Constants.kOuterPadding),
