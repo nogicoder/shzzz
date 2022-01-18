@@ -1,11 +1,10 @@
 import 'package:get/get.dart';
 import 'package:shzzz/data/database/todo_table.dart';
+import 'package:shzzz/data/index.dart';
 
 class Repository extends GetxService {
   final MyDatabase _database = MyDatabase();
   MyDatabase get database => _database;
-
-  Stream<List<Todo>> getTodos() => _database.getTodos();
 
   Stream<List<Todo>> getTodosWithStatus({bool isCompleted = false}) =>
       _database.getTodosWithStatus(isCompleted: isCompleted);
@@ -17,6 +16,11 @@ class Repository extends GetxService {
   Future<int> updateCompletion(Todo entry) => _database.updateCompletion(entry);
 
   Future deleteTodo(Todo entry) => _database.deleteEntry(entry);
+
+  Stream<List<TodoCount>> getCompletedCountByDate() =>
+      _database.getCompletedCountByDate();
+
+  Stream<List<TodoCount>> getCountByDueDate() => _database.getCountByDueDate();
 }
 
 final Repository repository = Get.find();

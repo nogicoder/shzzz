@@ -14,6 +14,7 @@ class Todo extends DataClass implements Insertable<Todo> {
   final int? category;
   final DateTime? createdTime;
   final DateTime dueTime;
+  final DateTime? completedTime;
   final bool? isCompleted;
   Todo(
       {this.id,
@@ -22,6 +23,7 @@ class Todo extends DataClass implements Insertable<Todo> {
       this.category,
       this.createdTime,
       required this.dueTime,
+      this.completedTime,
       this.isCompleted});
   factory Todo.fromData(Map<String, dynamic> data, {String? prefix}) {
     final effectivePrefix = prefix ?? '';
@@ -37,6 +39,8 @@ class Todo extends DataClass implements Insertable<Todo> {
           .mapFromDatabaseResponse(data['${effectivePrefix}created_time']),
       dueTime: const DateTimeType()
           .mapFromDatabaseResponse(data['${effectivePrefix}due_time'])!,
+      completedTime: const DateTimeType()
+          .mapFromDatabaseResponse(data['${effectivePrefix}completedTime']),
       isCompleted: const BoolType()
           .mapFromDatabaseResponse(data['${effectivePrefix}is_completed']),
     );
@@ -58,6 +62,9 @@ class Todo extends DataClass implements Insertable<Todo> {
       map['created_time'] = Variable<DateTime?>(createdTime);
     }
     map['due_time'] = Variable<DateTime>(dueTime);
+    if (!nullToAbsent || completedTime != null) {
+      map['completedTime'] = Variable<DateTime?>(completedTime);
+    }
     if (!nullToAbsent || isCompleted != null) {
       map['is_completed'] = Variable<bool?>(isCompleted);
     }
@@ -78,6 +85,9 @@ class Todo extends DataClass implements Insertable<Todo> {
           ? const Value.absent()
           : Value(createdTime),
       dueTime: Value(dueTime),
+      completedTime: completedTime == null && nullToAbsent
+          ? const Value.absent()
+          : Value(completedTime),
       isCompleted: isCompleted == null && nullToAbsent
           ? const Value.absent()
           : Value(isCompleted),
@@ -94,6 +104,7 @@ class Todo extends DataClass implements Insertable<Todo> {
       category: serializer.fromJson<int?>(json['category']),
       createdTime: serializer.fromJson<DateTime?>(json['createdTime']),
       dueTime: serializer.fromJson<DateTime>(json['dueTime']),
+      completedTime: serializer.fromJson<DateTime?>(json['completedTime']),
       isCompleted: serializer.fromJson<bool?>(json['isCompleted']),
     );
   }
@@ -107,6 +118,7 @@ class Todo extends DataClass implements Insertable<Todo> {
       'category': serializer.toJson<int?>(category),
       'createdTime': serializer.toJson<DateTime?>(createdTime),
       'dueTime': serializer.toJson<DateTime>(dueTime),
+      'completedTime': serializer.toJson<DateTime?>(completedTime),
       'isCompleted': serializer.toJson<bool?>(isCompleted),
     };
   }
@@ -118,6 +130,7 @@ class Todo extends DataClass implements Insertable<Todo> {
           int? category,
           DateTime? createdTime,
           DateTime? dueTime,
+          DateTime? completedTime,
           bool? isCompleted}) =>
       Todo(
         id: id ?? this.id,
@@ -126,6 +139,7 @@ class Todo extends DataClass implements Insertable<Todo> {
         category: category ?? this.category,
         createdTime: createdTime ?? this.createdTime,
         dueTime: dueTime ?? this.dueTime,
+        completedTime: completedTime ?? this.completedTime,
         isCompleted: isCompleted ?? this.isCompleted,
       );
   @override
@@ -137,14 +151,15 @@ class Todo extends DataClass implements Insertable<Todo> {
           ..write('category: $category, ')
           ..write('createdTime: $createdTime, ')
           ..write('dueTime: $dueTime, ')
+          ..write('completedTime: $completedTime, ')
           ..write('isCompleted: $isCompleted')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(
-      id, title, content, category, createdTime, dueTime, isCompleted);
+  int get hashCode => Object.hash(id, title, content, category, createdTime,
+      dueTime, completedTime, isCompleted);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
@@ -155,6 +170,7 @@ class Todo extends DataClass implements Insertable<Todo> {
           other.category == this.category &&
           other.createdTime == this.createdTime &&
           other.dueTime == this.dueTime &&
+          other.completedTime == this.completedTime &&
           other.isCompleted == this.isCompleted);
 }
 
@@ -165,6 +181,7 @@ class TodosCompanion extends UpdateCompanion<Todo> {
   final Value<int?> category;
   final Value<DateTime?> createdTime;
   final Value<DateTime> dueTime;
+  final Value<DateTime?> completedTime;
   final Value<bool?> isCompleted;
   const TodosCompanion({
     this.id = const Value.absent(),
@@ -173,6 +190,7 @@ class TodosCompanion extends UpdateCompanion<Todo> {
     this.category = const Value.absent(),
     this.createdTime = const Value.absent(),
     this.dueTime = const Value.absent(),
+    this.completedTime = const Value.absent(),
     this.isCompleted = const Value.absent(),
   });
   TodosCompanion.insert({
@@ -182,6 +200,7 @@ class TodosCompanion extends UpdateCompanion<Todo> {
     this.category = const Value.absent(),
     this.createdTime = const Value.absent(),
     required DateTime dueTime,
+    this.completedTime = const Value.absent(),
     this.isCompleted = const Value.absent(),
   })  : title = Value(title),
         dueTime = Value(dueTime);
@@ -192,6 +211,7 @@ class TodosCompanion extends UpdateCompanion<Todo> {
     Expression<int?>? category,
     Expression<DateTime?>? createdTime,
     Expression<DateTime>? dueTime,
+    Expression<DateTime?>? completedTime,
     Expression<bool?>? isCompleted,
   }) {
     return RawValuesInsertable({
@@ -201,6 +221,7 @@ class TodosCompanion extends UpdateCompanion<Todo> {
       if (category != null) 'category': category,
       if (createdTime != null) 'created_time': createdTime,
       if (dueTime != null) 'due_time': dueTime,
+      if (completedTime != null) 'completedTime': completedTime,
       if (isCompleted != null) 'is_completed': isCompleted,
     });
   }
@@ -212,6 +233,7 @@ class TodosCompanion extends UpdateCompanion<Todo> {
       Value<int?>? category,
       Value<DateTime?>? createdTime,
       Value<DateTime>? dueTime,
+      Value<DateTime?>? completedTime,
       Value<bool?>? isCompleted}) {
     return TodosCompanion(
       id: id ?? this.id,
@@ -220,6 +242,7 @@ class TodosCompanion extends UpdateCompanion<Todo> {
       category: category ?? this.category,
       createdTime: createdTime ?? this.createdTime,
       dueTime: dueTime ?? this.dueTime,
+      completedTime: completedTime ?? this.completedTime,
       isCompleted: isCompleted ?? this.isCompleted,
     );
   }
@@ -245,6 +268,9 @@ class TodosCompanion extends UpdateCompanion<Todo> {
     if (dueTime.present) {
       map['due_time'] = Variable<DateTime>(dueTime.value);
     }
+    if (completedTime.present) {
+      map['completedTime'] = Variable<DateTime?>(completedTime.value);
+    }
     if (isCompleted.present) {
       map['is_completed'] = Variable<bool?>(isCompleted.value);
     }
@@ -260,6 +286,7 @@ class TodosCompanion extends UpdateCompanion<Todo> {
           ..write('category: $category, ')
           ..write('createdTime: $createdTime, ')
           ..write('dueTime: $dueTime, ')
+          ..write('completedTime: $completedTime, ')
           ..write('isCompleted: $isCompleted')
           ..write(')'))
         .toString();
@@ -306,6 +333,12 @@ class $TodosTable extends Todos with TableInfo<$TodosTable, Todo> {
   late final GeneratedColumn<DateTime?> dueTime = GeneratedColumn<DateTime?>(
       'due_time', aliasedName, false,
       type: const IntType(), requiredDuringInsert: true);
+  final VerificationMeta _completedTimeMeta =
+      const VerificationMeta('completedTime');
+  @override
+  late final GeneratedColumn<DateTime?> completedTime =
+      GeneratedColumn<DateTime?>('completedTime', aliasedName, true,
+          type: const IntType(), requiredDuringInsert: false);
   final VerificationMeta _isCompletedMeta =
       const VerificationMeta('isCompleted');
   @override
@@ -316,8 +349,16 @@ class $TodosTable extends Todos with TableInfo<$TodosTable, Todo> {
       defaultConstraints: 'CHECK (is_completed IN (0, 1))',
       defaultValue: const Constant(false));
   @override
-  List<GeneratedColumn> get $columns =>
-      [id, title, content, category, createdTime, dueTime, isCompleted];
+  List<GeneratedColumn> get $columns => [
+        id,
+        title,
+        content,
+        category,
+        createdTime,
+        dueTime,
+        completedTime,
+        isCompleted
+      ];
   @override
   String get aliasedName => _alias ?? 'todos';
   @override
@@ -356,6 +397,12 @@ class $TodosTable extends Todos with TableInfo<$TodosTable, Todo> {
     } else if (isInserting) {
       context.missing(_dueTimeMeta);
     }
+    if (data.containsKey('completedTime')) {
+      context.handle(
+          _completedTimeMeta,
+          completedTime.isAcceptableOrUnknown(
+              data['completedTime']!, _completedTimeMeta));
+    }
     if (data.containsKey('is_completed')) {
       context.handle(
           _isCompletedMeta,
@@ -379,187 +426,11 @@ class $TodosTable extends Todos with TableInfo<$TodosTable, Todo> {
   }
 }
 
-class Category extends DataClass implements Insertable<Category> {
-  final int id;
-  final String description;
-  Category({required this.id, required this.description});
-  factory Category.fromData(Map<String, dynamic> data, {String? prefix}) {
-    final effectivePrefix = prefix ?? '';
-    return Category(
-      id: const IntType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}id'])!,
-      description: const StringType()
-          .mapFromDatabaseResponse(data['${effectivePrefix}description'])!,
-    );
-  }
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    map['id'] = Variable<int>(id);
-    map['description'] = Variable<String>(description);
-    return map;
-  }
-
-  CategoriesCompanion toCompanion(bool nullToAbsent) {
-    return CategoriesCompanion(
-      id: Value(id),
-      description: Value(description),
-    );
-  }
-
-  factory Category.fromJson(Map<String, dynamic> json,
-      {ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return Category(
-      id: serializer.fromJson<int>(json['id']),
-      description: serializer.fromJson<String>(json['description']),
-    );
-  }
-  @override
-  Map<String, dynamic> toJson({ValueSerializer? serializer}) {
-    serializer ??= driftRuntimeOptions.defaultSerializer;
-    return <String, dynamic>{
-      'id': serializer.toJson<int>(id),
-      'description': serializer.toJson<String>(description),
-    };
-  }
-
-  Category copyWith({int? id, String? description}) => Category(
-        id: id ?? this.id,
-        description: description ?? this.description,
-      );
-  @override
-  String toString() {
-    return (StringBuffer('Category(')
-          ..write('id: $id, ')
-          ..write('description: $description')
-          ..write(')'))
-        .toString();
-  }
-
-  @override
-  int get hashCode => Object.hash(id, description);
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      (other is Category &&
-          other.id == this.id &&
-          other.description == this.description);
-}
-
-class CategoriesCompanion extends UpdateCompanion<Category> {
-  final Value<int> id;
-  final Value<String> description;
-  const CategoriesCompanion({
-    this.id = const Value.absent(),
-    this.description = const Value.absent(),
-  });
-  CategoriesCompanion.insert({
-    this.id = const Value.absent(),
-    required String description,
-  }) : description = Value(description);
-  static Insertable<Category> custom({
-    Expression<int>? id,
-    Expression<String>? description,
-  }) {
-    return RawValuesInsertable({
-      if (id != null) 'id': id,
-      if (description != null) 'description': description,
-    });
-  }
-
-  CategoriesCompanion copyWith({Value<int>? id, Value<String>? description}) {
-    return CategoriesCompanion(
-      id: id ?? this.id,
-      description: description ?? this.description,
-    );
-  }
-
-  @override
-  Map<String, Expression> toColumns(bool nullToAbsent) {
-    final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<int>(id.value);
-    }
-    if (description.present) {
-      map['description'] = Variable<String>(description.value);
-    }
-    return map;
-  }
-
-  @override
-  String toString() {
-    return (StringBuffer('CategoriesCompanion(')
-          ..write('id: $id, ')
-          ..write('description: $description')
-          ..write(')'))
-        .toString();
-  }
-}
-
-class $CategoriesTable extends Categories
-    with TableInfo<$CategoriesTable, Category> {
-  final GeneratedDatabase _db;
-  final String? _alias;
-  $CategoriesTable(this._db, [this._alias]);
-  final VerificationMeta _idMeta = const VerificationMeta('id');
-  @override
-  late final GeneratedColumn<int?> id = GeneratedColumn<int?>(
-      'id', aliasedName, false,
-      type: const IntType(),
-      requiredDuringInsert: false,
-      defaultConstraints: 'PRIMARY KEY AUTOINCREMENT');
-  final VerificationMeta _descriptionMeta =
-      const VerificationMeta('description');
-  @override
-  late final GeneratedColumn<String?> description = GeneratedColumn<String?>(
-      'description', aliasedName, false,
-      type: const StringType(), requiredDuringInsert: true);
-  @override
-  List<GeneratedColumn> get $columns => [id, description];
-  @override
-  String get aliasedName => _alias ?? 'categories';
-  @override
-  String get actualTableName => 'categories';
-  @override
-  VerificationContext validateIntegrity(Insertable<Category> instance,
-      {bool isInserting = false}) {
-    final context = VerificationContext();
-    final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
-    }
-    if (data.containsKey('description')) {
-      context.handle(
-          _descriptionMeta,
-          description.isAcceptableOrUnknown(
-              data['description']!, _descriptionMeta));
-    } else if (isInserting) {
-      context.missing(_descriptionMeta);
-    }
-    return context;
-  }
-
-  @override
-  Set<GeneratedColumn> get $primaryKey => {id};
-  @override
-  Category map(Map<String, dynamic> data, {String? tablePrefix}) {
-    return Category.fromData(data,
-        prefix: tablePrefix != null ? '$tablePrefix.' : null);
-  }
-
-  @override
-  $CategoriesTable createAlias(String alias) {
-    return $CategoriesTable(_db, alias);
-  }
-}
-
 abstract class _$MyDatabase extends GeneratedDatabase {
   _$MyDatabase(QueryExecutor e) : super(SqlTypeSystem.defaultInstance, e);
   late final $TodosTable todos = $TodosTable(this);
-  late final $CategoriesTable categories = $CategoriesTable(this);
   @override
   Iterable<TableInfo> get allTables => allSchemaEntities.whereType<TableInfo>();
   @override
-  List<DatabaseSchemaEntity> get allSchemaEntities => [todos, categories];
+  List<DatabaseSchemaEntity> get allSchemaEntities => [todos];
 }

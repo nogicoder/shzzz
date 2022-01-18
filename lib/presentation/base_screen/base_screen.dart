@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:shzzz/business/repository/repository.dart';
 import 'package:shzzz/data/database/todo_table.dart';
+import 'package:shzzz/data/index.dart';
 import 'package:shzzz/presentation/base_screen/components/index.dart';
 
 class BaseScreenController extends GetxController
@@ -16,6 +17,8 @@ class BaseScreenController extends GetxController
 
   var completedTodos = <Todo>[].obs;
   var ongoingTodos = <Todo>[].obs;
+  var completedCounts = <TodoCount>[].obs;
+  var ongoingCounts = <TodoCount>[].obs;
 
   @override
   void onInit() {
@@ -25,6 +28,13 @@ class BaseScreenController extends GetxController
     repository.getTodosWithStatus(isCompleted: true).listen((event) {
       completedTodos.value = event;
     });
+    repository.getCompletedCountByDate().listen((event) {
+      completedCounts.value = event;
+    });
+    repository.getCountByDueDate().listen((event) {
+      ongoingCounts.value = event;
+    });
+
     super.onInit();
   }
 }
