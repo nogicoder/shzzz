@@ -44,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "how_to_call":
             MessageLookupByLibrary.simpleMessage("Tôi có thể gọi bạn là gì?"),
         "lets_go": MessageLookupByLibrary.simpleMessage("Let\'s go"),
+        "logout": MessageLookupByLibrary.simpleMessage("Đăng xuất"),
         "min_length_error": MessageLookupByLibrary.simpleMessage(
             "Tiêu đề tối thiểu là 6 ký tự"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),

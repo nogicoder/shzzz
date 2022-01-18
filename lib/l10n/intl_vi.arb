@@ -33,5 +33,6 @@
   "contact_support": "Liên hệ hỗ trợ",
   "empty_error": "Vui lòng nhập thông tin",
   "empty_todos": "Woohoo! Hết việc rồi!",
-  "no_task_inside": "Không có công việc nào."
+  "no_task_inside": "Không có công việc nào.",
+  "logout": "Đăng xuất"
 }

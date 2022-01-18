@@ -22,7 +22,7 @@ class Repository extends GetxService {
 
   Stream<List<TodoCount>> getCountByDueDate() => _database.getCountByDueDate();
 
-  void clearDatabase() => _database.clear();
+  clearDatabase() => _database.clear();
 }
 
 final Repository repository = Get.find();

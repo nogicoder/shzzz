@@ -43,6 +43,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "how_to_call":
             MessageLookupByLibrary.simpleMessage("How can I call you?"),
         "lets_go": MessageLookupByLibrary.simpleMessage("Let\'s go"),
+        "logout": MessageLookupByLibrary.simpleMessage("Logout"),
         "min_length_error": MessageLookupByLibrary.simpleMessage(
             "Minimum title lenght must be 6"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),

@@ -82,7 +82,7 @@ class DrawerLayer extends GetView<BaseScreenController> {
           InkWell(
             onTap: userConfigService.logOut,
             child: Text(
-              'Logout',
+              tr().logout,
               style: UITextStyle.bodyStyle(color: Colors.white),
             ),
           ),

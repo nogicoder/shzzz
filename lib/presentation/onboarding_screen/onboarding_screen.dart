@@ -25,7 +25,7 @@ class OnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: Constants.kPaddingStandard,
-      color: Get.theme.cardColor,
+      color: Colors.white,
       child: Column(
         children: [
           Expanded(
@@ -73,7 +73,8 @@ class OnboardingScreen extends StatelessWidget {
           height: Get.height * 0.1,
           child: Text(
             descs[index],
-            style: UITextStyle.subtitle1(),
+            style: UITextStyle.subtitle1()
+                ?.copyWith(color: Get.theme.primaryColor),
             textAlign: TextAlign.center,
           ),
         ),
@@ -93,7 +94,7 @@ class OnboardingScreen extends StatelessWidget {
             child: CircleAvatar(
               backgroundColor: currentIndex.value == index
                   ? Get.theme.primaryColor
-                  : Get.theme.dividerColor,
+                  : Colors.grey,
             ),
           ),
         ),

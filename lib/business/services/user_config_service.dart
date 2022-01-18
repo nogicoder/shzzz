@@ -45,14 +45,13 @@ class UserConfigService extends GetxService {
 
   setOnboarded() => storage.setOnboarded();
 
-  logOut() async {
-    storage.clear();
-    Get.changeThemeMode(ThemeMode.light);
-    print(Get.theme);
-    print(isLightTheme);
-    repository.clearDatabase();
-    await AppBinding.inject();
-    Get.offAllNamed(Routes.ONBOARDING_SCREEN);
+  logOut() {
+    DialogUtil.confirm(Text(tr().logout), onSubmit: () async {
+      storage.clear();
+      Get.changeThemeMode(ThemeMode.light);
+      await repository.clearDatabase();
+      Get.offAllNamed(Routes.ONBOARDING_SCREEN);
+    });
   }
 }
 

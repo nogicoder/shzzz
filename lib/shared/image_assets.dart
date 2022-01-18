@@ -14,7 +14,7 @@ class ImageAssets {
   static const flag_en = '$image_path/flag_en.png';
   static const ic_empty = '$svg_path/ic_empty.svg';
 
-  static const ic_logo = '$svg_path/iclogo.png';
+  static const ic_logo = '$svg_path/ic_logo.svg';
 
   //! Get placeholder image
   static String getTestImage(int width, [int height = 0]) {

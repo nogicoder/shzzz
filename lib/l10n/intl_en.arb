@@ -33,5 +33,6 @@
   "contact_support": "Contact support",
   "empty_error": "Field cannot be empty",
   "empty_todos": "Woohoo! You are the shzzz!",
-  "no_task_inside": "No shzzz in here."
+  "no_task_inside": "No shzzz in here.",
+  "logout": "Logout"
 }

@@ -19,12 +19,12 @@ class RegisterScreen extends StatelessWidget {
         alignment: AlignmentDirectional.center,
         children: [
           Positioned(
-            top: 100,
+            top: 70,
             left: 0,
             right: 0,
             child: SizedBox(
-              width: 50,
-              height: 50,
+              width: 25,
+              height: 25,
               child: ImageAssets.svgAssets(ImageAssets.ic_logo),
             ),
           ),
@@ -37,7 +37,8 @@ class RegisterScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(tr().how_to_call,
-                      style: UITextStyle.headline4(FontWeight.bold)),
+                      style: UITextStyle.headline4(FontWeight.bold)
+                          ?.copyWith(color: Get.theme.primaryColor)),
                   SizedBox(height: Constants.kOuterPadding),
                   Obx(
                     () => TextField(
@@ -52,7 +53,8 @@ class RegisterScreen extends StatelessWidget {
                         hintStyle: UITextStyle.headline5()
                             ?.copyWith(color: Get.theme.colorScheme.surface),
                       ),
-                      style: UITextStyle.headline5(),
+                      style: UITextStyle.headline5()
+                          ?.copyWith(color: Get.theme.primaryColor),
                     ),
                   )
                 ],
