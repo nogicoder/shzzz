@@ -5,6 +5,7 @@ import 'package:shzzz/shared/index.dart';
 
 /// [OnboardingScreen] displays the welcome images and texts that introduce
 /// users about the app's main functionalities
+/// Navigate to [RegisterScreen] after completion
 //ignore: must_be_immutable
 class OnboardingScreen extends StatelessWidget {
   final PageController controller = PageController();

@@ -34,5 +34,6 @@
   "empty_error": "Vui lòng nhập thông tin",
   "empty_todos": "Woohoo! Hết việc rồi!",
   "no_task_inside": "Không có công việc nào.",
-  "logout": "Đăng xuất"
+  "logout": "Đăng xuất",
+  "logout_confirm": "Bạn chắc chắn muốn đăng xuất khỏi ứng dụng?"
 }

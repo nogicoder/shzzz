@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:package_info/package_info.dart';
 import 'package:shzzz/business/services/index.dart';
-import 'package:shzzz/presentation/base_screen/base_screen.dart';
+import 'package:shzzz/presentation/base_screen/base_screen_controller.dart';
 import 'package:shzzz/shared/index.dart';
 import 'package:url_launcher/url_launcher.dart';
 

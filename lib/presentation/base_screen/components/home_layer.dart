@@ -1,13 +1,18 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:shzzz/presentation/base_screen/base_screen.dart';
 
 import 'package:shzzz/shared/index.dart';
 import 'package:shzzz/data/database/todo_table.dart';
 import 'package:shzzz/presentation/base_screen/components/index.dart';
+import 'package:shzzz/presentation/base_screen/base_screen_controller.dart';
 
+/// [HomeLayer] displays the Tab's layout using [CupertinoTabBar].
+/// There are 3 tabs: [HomeTab], Ongoing tab and Completed tab. [HomeTab]
+/// displays both ongoing and completed tasks, while the other displays only
+/// tasks with the corresponding statuses.
+/// Each tab is based on a [UITabLayout] widget that provides a common layout.
+/// Updating the status of each todo item will update the UI of all tabs
 class HomeLayer extends GetView<BaseScreenController> {
   HomeLayer({Key? key}) : super(key: key);
 
@@ -45,11 +50,11 @@ class HomeLayer extends GetView<BaseScreenController> {
               ));
             case 1:
               return UITabLayout(
-                  child: _buildItemList(controller.ongoingTodos));
+                  child: Obx(() => _buildItemList(controller.ongoingTodos)));
             case 2:
             default:
               return UITabLayout(
-                  child: _buildItemList(controller.completedTodos));
+                  child: Obx(() => _buildItemList(controller.completedTodos)));
           }
         },
       ),

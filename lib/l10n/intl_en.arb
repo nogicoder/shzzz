@@ -34,5 +34,6 @@
   "empty_error": "Field cannot be empty",
   "empty_todos": "Woohoo! You are the shzzz!",
   "no_task_inside": "No shzzz in here.",
-  "logout": "Logout"
+  "logout": "Logout",
+  "logout_confirm": "You sure want to logout?"
 }

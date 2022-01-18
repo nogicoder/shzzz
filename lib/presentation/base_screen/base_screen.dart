@@ -1,44 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:shzzz/business/repository/repository.dart';
-import 'package:shzzz/data/database/todo_table.dart';
-import 'package:shzzz/data/index.dart';
 import 'package:shzzz/presentation/base_screen/components/index.dart';
+import 'package:shzzz/presentation/base_screen/base_screen_controller.dart';
 
-class BaseScreenController extends GetxController
-    with GetSingleTickerProviderStateMixin {
-  late AnimationController animationController =
-      AnimationController(vsync: this, duration: Duration(milliseconds: 250));
-
-  void toggle() => animationController.isDismissed
-      ? animationController.forward()
-      : animationController.reverse();
-
-  var completedTodos = <Todo>[].obs;
-  var ongoingTodos = <Todo>[].obs;
-  var completedCounts = <TodoCount>[].obs;
-  var ongoingCounts = <TodoCount>[].obs;
-
-  @override
-  void onInit() {
-    repository.getTodosWithStatus().listen((event) {
-      ongoingTodos.value = event;
-    });
-    repository.getTodosWithStatus(isCompleted: true).listen((event) {
-      completedTodos.value = event;
-    });
-    repository.getCompletedCountByCompletionTime().listen((event) {
-      completedCounts.value = event;
-    });
-    repository.getCountByDueTime().listen((event) {
-      ongoingCounts.value = event;
-    });
-
-    super.onInit();
-  }
-}
-
+/// [BaseScreen] consists of 2 layers: [DrawerLayer] and [HomeLayer]
+/// Each layer is displayed with animation when pressing the button on top of
+/// page using an [AnimationController]
 class BaseScreen extends GetView<BaseScreenController> {
   const BaseScreen({Key? key}) : super(key: key);
 

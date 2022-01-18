@@ -7,7 +7,6 @@ import 'package:shzzz/business/repository/repository.dart';
 import 'package:shzzz/business/services/index.dart';
 import 'package:shzzz/data/database/todo_table.dart';
 import 'package:shzzz/data/model/user_info.dart';
-import 'package:shzzz/main.dart';
 import 'package:shzzz/presentation/index.dart';
 import 'package:shzzz/shared/index.dart';
 
@@ -58,7 +57,7 @@ class UserConfigService extends GetxService {
   /// [MyDatabase]'s data, set the theme back to [ThemeMode.light] and navigate
   /// back to the [OnboardingScreen]
   logOut() {
-    DialogUtil.confirm(Text(tr().logout), onSubmit: () async {
+    DialogUtil.confirm(Text(tr().logout_confirm), onSubmit: () async {
       storage.clear();
       Get.changeThemeMode(ThemeMode.light);
       await repository.clearDatabase();

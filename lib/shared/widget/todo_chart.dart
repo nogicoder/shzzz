@@ -1,7 +1,7 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shzzz/presentation/base_screen/base_screen.dart';
+import 'package:shzzz/presentation/base_screen/base_screen_controller.dart';
 
 class TodoChart extends GetView<BaseScreenController> {
   @override
