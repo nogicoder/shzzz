@@ -60,6 +60,7 @@ class CreateTaskScreen extends GetView<CreateTaskController> {
   Widget build(BuildContext context) {
     controller = Get.put(CreateTaskController(todo: todo));
     return Scaffold(
+      backgroundColor: Get.theme.backgroundColor,
       body: InkWell(
         onTap: () {
           controller.focusNode.unfocus();

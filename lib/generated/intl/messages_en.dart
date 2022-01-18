@@ -32,9 +32,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "create_task": MessageLookupByLibrary.simpleMessage("Create task"),
         "developing_feature":
             MessageLookupByLibrary.simpleMessage("Feature is in development"),
+        "empty_error":
+            MessageLookupByLibrary.simpleMessage("Field cannot be empty"),
+        "empty_todos":
+            MessageLookupByLibrary.simpleMessage("Woohoo! You are the shzzz!"),
         "enter_note": MessageLookupByLibrary.simpleMessage("Enter note"),
         "enter_task": MessageLookupByLibrary.simpleMessage("Enter new task"),
-        "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+        "hello": MessageLookupByLibrary.simpleMessage("What\'s up"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
         "how_to_call":
             MessageLookupByLibrary.simpleMessage("How can I call you?"),
@@ -42,13 +46,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "min_length_error": MessageLookupByLibrary.simpleMessage(
             "Minimum title lenght must be 6"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "no_task_inside":
+            MessageLookupByLibrary.simpleMessage("No shzzz in here."),
         "ok": MessageLookupByLibrary.simpleMessage("Okay"),
-        "onboarding_1_desc": MessageLookupByLibrary.simpleMessage(""),
-        "onboarding_1_title": MessageLookupByLibrary.simpleMessage(""),
-        "onboarding_2_desc": MessageLookupByLibrary.simpleMessage(""),
-        "onboarding_2_title": MessageLookupByLibrary.simpleMessage(""),
-        "onboarding_3_desc": MessageLookupByLibrary.simpleMessage(""),
-        "onboarding_3_title": MessageLookupByLibrary.simpleMessage(""),
+        "onboarding_1_desc": MessageLookupByLibrary.simpleMessage(
+            "Waste zero time getting your shzzz done"),
+        "onboarding_1_title":
+            MessageLookupByLibrary.simpleMessage("Minimalism is key"),
+        "onboarding_2_desc": MessageLookupByLibrary.simpleMessage(
+            "All your productivity managed in Shzzz"),
+        "onboarding_2_title": MessageLookupByLibrary.simpleMessage(
+            "Built-in tools to match your need"),
+        "onboarding_3_desc": MessageLookupByLibrary.simpleMessage(
+            "Helps you find the balance you\'ve long needed"),
+        "onboarding_3_title": MessageLookupByLibrary.simpleMessage(
+            "Smart statistics for keeping track"),
         "ongoing": MessageLookupByLibrary.simpleMessage("Ongoing"),
         "please_check_input": MessageLookupByLibrary.simpleMessage(
             "Please check your input again!"),

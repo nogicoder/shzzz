@@ -1,11 +1,11 @@
 {
-  "hello": "Hello",
-  "onboarding_1_title": "",
-  "onboarding_2_title": "",
-  "onboarding_3_title": "",
-  "onboarding_1_desc": "",
-  "onboarding_2_desc": "",
-  "onboarding_3_desc": "",
+  "hello": "What's up",
+  "onboarding_1_title": "Minimalism is key",
+  "onboarding_2_title": "Built-in tools to match your need",
+  "onboarding_3_title": "Smart statistics for keeping track",
+  "onboarding_1_desc": "Waste zero time getting your shzzz done",
+  "onboarding_2_desc": "All your productivity managed in Shzzz",
+  "onboarding_3_desc": "Helps you find the balance you've long needed",
   "start_now": "Start now",
   "how_to_call": "How can I call you?",
   "lets_go": "Let's go",
@@ -30,5 +30,8 @@
   "home": "Home",
   "ongoing": "Ongoing",
   "change_theme": "Change theme",
-  "contact_support": "Contact support"
+  "contact_support": "Contact support",
+  "empty_error": "Field cannot be empty",
+  "empty_todos": "Woohoo! You are the shzzz!",
+  "no_task_inside": "No shzzz in here."
 }

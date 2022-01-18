@@ -22,7 +22,7 @@ class TaskApp extends GetView<UserConfigService> {
         theme: UITheme.getLightTheme(),
         darkTheme: UITheme.getDarkTheme(),
         getPages: Routes.getPages,
-        initialRoute: '',
+        initialRoute: '/',
         supportedLocales: List<Locale>.from(
             SUPPORTED_LOCALES.map((langCode) => Locale(langCode))),
         localizationsDelegates: [

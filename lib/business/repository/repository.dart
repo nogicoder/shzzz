@@ -21,6 +21,8 @@ class Repository extends GetxService {
       _database.getCompletedCountByDate();
 
   Stream<List<TodoCount>> getCountByDueDate() => _database.getCountByDueDate();
+
+  void clearDatabase() => _database.clear();
 }
 
 final Repository repository = Get.find();

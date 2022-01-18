@@ -68,8 +68,8 @@ flutter_icons:
 flutter:
   uses-material-design: true
   assets:
+    - assets/image/
     - assets/svg/
-    - assets/png/
 
 flutter_intl:
   enabled: true

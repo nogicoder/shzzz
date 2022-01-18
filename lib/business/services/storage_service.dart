@@ -22,7 +22,7 @@ class StorageService extends GetxService {
 
   String getLang() => prefs.getString(keyLanguageCode) ?? DEFAULT_LOCALE;
 
-  void updateLang(String lang) => prefs.setString(keyLanguageCode, lang);
+  updateLang(String lang) async => await prefs.setString(keyLanguageCode, lang);
 
   bool? getIsLightTheme() => prefs.getBool(keyLight);
 

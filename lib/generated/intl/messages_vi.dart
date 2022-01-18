@@ -32,10 +32,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "create_task": MessageLookupByLibrary.simpleMessage("Tạo công việc"),
         "developing_feature":
             MessageLookupByLibrary.simpleMessage("Chức năng đang phát triển"),
+        "empty_error":
+            MessageLookupByLibrary.simpleMessage("Vui lòng nhập thông tin"),
+        "empty_todos":
+            MessageLookupByLibrary.simpleMessage("Woohoo! Hết việc rồi!"),
         "enter_note": MessageLookupByLibrary.simpleMessage("Nhập ghi chú"),
         "enter_task":
             MessageLookupByLibrary.simpleMessage("Nhập công việc mới"),
-        "hello": MessageLookupByLibrary.simpleMessage("Hello"),
+        "hello": MessageLookupByLibrary.simpleMessage("Xin chào"),
         "home": MessageLookupByLibrary.simpleMessage("Trang chủ"),
         "how_to_call":
             MessageLookupByLibrary.simpleMessage("Tôi có thể gọi bạn là gì?"),
@@ -43,13 +47,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "min_length_error": MessageLookupByLibrary.simpleMessage(
             "Tiêu đề tối thiểu là 6 ký tự"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "no_task_inside":
+            MessageLookupByLibrary.simpleMessage("Không có công việc nào."),
         "ok": MessageLookupByLibrary.simpleMessage("Đồng ý"),
-        "onboarding_1_desc": MessageLookupByLibrary.simpleMessage(""),
-        "onboarding_1_title": MessageLookupByLibrary.simpleMessage(""),
-        "onboarding_2_desc": MessageLookupByLibrary.simpleMessage(""),
-        "onboarding_2_title": MessageLookupByLibrary.simpleMessage(""),
-        "onboarding_3_desc": MessageLookupByLibrary.simpleMessage(""),
-        "onboarding_3_title": MessageLookupByLibrary.simpleMessage(""),
+        "onboarding_1_desc": MessageLookupByLibrary.simpleMessage(
+            "Tối ưu hoá nguồn năng lượng của bạn"),
+        "onboarding_1_title":
+            MessageLookupByLibrary.simpleMessage("Tối giản là chìa khoá"),
+        "onboarding_2_desc": MessageLookupByLibrary.simpleMessage(
+            "Quản lý toàn bộ hiệu suất của bạn một cách hợp lý"),
+        "onboarding_2_title":
+            MessageLookupByLibrary.simpleMessage("Công cụ bổ trợ hữu ích"),
+        "onboarding_3_desc": MessageLookupByLibrary.simpleMessage(
+            "Luôn nắm được những thông tin mà bạn quan tâm"),
+        "onboarding_3_title":
+            MessageLookupByLibrary.simpleMessage("Thống kê thông minh"),
         "ongoing": MessageLookupByLibrary.simpleMessage("Chưa hoàn thành"),
         "please_check_input": MessageLookupByLibrary.simpleMessage(
             "Vui lòng kiểm tra lại thông tin đã nhập"),

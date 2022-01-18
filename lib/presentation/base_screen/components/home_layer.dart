@@ -18,7 +18,7 @@ class HomeLayer extends GetView<BaseScreenController> {
       child: CupertinoTabScaffold(
         tabBar: CupertinoTabBar(
           activeColor: Get.theme.colorScheme.secondary,
-          inactiveColor: Get.theme.colorScheme.surface,
+          inactiveColor: Get.theme.backgroundColor,
           iconSize: 24,
           items: [
             BottomNavigationBarItem(
@@ -57,21 +57,26 @@ class HomeLayer extends GetView<BaseScreenController> {
   }
 
   Widget _buildItemList(List<Todo> todos) {
-    return Material(
-      child: Padding(
-        padding: Constants.kHorizontalPaddingStandard,
-        child: Column(
-          children: List<Widget>.generate(
-            todos.length,
-            (index) => Padding(
-              padding: index != todos.length
-                  ? EdgeInsets.only(bottom: Constants.kSmallPadding)
-                  : EdgeInsets.zero,
-              child: UITodoItem(todo: todos[index]),
+    return todos.isEmpty
+        ? Padding(
+            padding: EdgeInsets.only(top: 100),
+            child: UIEmptyWidget(
+              message: tr().no_task_inside,
             ),
-          ),
-        ),
-      ),
-    );
+          )
+        : Padding(
+            padding: Constants.kHorizontalPaddingStandard,
+            child: Column(
+              children: List<Widget>.generate(
+                todos.length,
+                (index) => Padding(
+                  padding: index != todos.length
+                      ? EdgeInsets.only(bottom: Constants.kSmallPadding)
+                      : EdgeInsets.zero,
+                  child: UITodoItem(todo: todos[index]),
+                ),
+              ),
+            ),
+          );
   }
 }

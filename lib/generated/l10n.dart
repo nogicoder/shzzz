@@ -50,70 +50,70 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
-  /// `Hello`
+  /// `What's up`
   String get hello {
     return Intl.message(
-      'Hello',
+      'What\'s up',
       name: 'hello',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `Minimalism is key`
   String get onboarding_1_title {
     return Intl.message(
-      '',
+      'Minimalism is key',
       name: 'onboarding_1_title',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `Built-in tools to match your need`
   String get onboarding_2_title {
     return Intl.message(
-      '',
+      'Built-in tools to match your need',
       name: 'onboarding_2_title',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `Smart statistics for keeping track`
   String get onboarding_3_title {
     return Intl.message(
-      '',
+      'Smart statistics for keeping track',
       name: 'onboarding_3_title',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `Waste zero time getting your shzzz done`
   String get onboarding_1_desc {
     return Intl.message(
-      '',
+      'Waste zero time getting your shzzz done',
       name: 'onboarding_1_desc',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `All your productivity managed in Shzzz`
   String get onboarding_2_desc {
     return Intl.message(
-      '',
+      'All your productivity managed in Shzzz',
       name: 'onboarding_2_desc',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `Helps you find the balance you've long needed`
   String get onboarding_3_desc {
     return Intl.message(
-      '',
+      'Helps you find the balance you\'ve long needed',
       name: 'onboarding_3_desc',
       desc: '',
       args: [],
@@ -365,6 +365,36 @@ class S {
     return Intl.message(
       'Contact support',
       name: 'contact_support',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Field cannot be empty`
+  String get empty_error {
+    return Intl.message(
+      'Field cannot be empty',
+      name: 'empty_error',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Woohoo! You are the shzzz!`
+  String get empty_todos {
+    return Intl.message(
+      'Woohoo! You are the shzzz!',
+      name: 'empty_todos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No shzzz in here.`
+  String get no_task_inside {
+    return Intl.message(
+      'No shzzz in here.',
+      name: 'no_task_inside',
       desc: '',
       args: [],
     );

@@ -16,6 +16,6 @@ There are 3 layers to the app:
 
 ## Upcoming Features
 
-- Background image
+- Background image, avatar image upload
 - Mark as favorite
 - Session management

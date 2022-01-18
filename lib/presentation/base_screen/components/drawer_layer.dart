@@ -45,7 +45,10 @@ class DrawerLayer extends GetView<BaseScreenController> {
                 border: Border.all(color: Get.theme.highlightColor, width: 5),
                 shape: BoxShape.circle,
               ),
-              child: CircleAvatar(radius: 50)),
+              child: CircleAvatar(
+                radius: 50,
+                backgroundImage: NetworkImage(ImageAssets.getTestImage(512)),
+              )),
           SizedBox(height: 40),
           Text(
             userConfigService.userInfo?.name ?? '',
@@ -59,7 +62,7 @@ class DrawerLayer extends GetView<BaseScreenController> {
           SizedBox(height: 30),
           _buildSupportButton(),
           SizedBox(height: 30),
-          Divider(color: Get.theme.colorScheme.secondary),
+          Divider(color: Colors.blue.shade800),
           SizedBox(height: 30),
           Obx(() => _buildInfoRow(
               '${tr().completed}: ', '${controller.completedTodos.length}')),
@@ -72,6 +75,14 @@ class DrawerLayer extends GetView<BaseScreenController> {
           Obx(
             () => Text(
               'v${drawerController.packageInfo.value}',
+              style: UITextStyle.bodyStyle(color: Colors.white),
+            ),
+          ),
+          SizedBox(height: 20),
+          InkWell(
+            onTap: userConfigService.logOut,
+            child: Text(
+              'Logout',
               style: UITextStyle.bodyStyle(color: Colors.white),
             ),
           ),

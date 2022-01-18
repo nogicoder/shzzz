@@ -4,13 +4,14 @@ class UITheme {
   static ThemeData getLightTheme() {
     final baseTheme = ThemeData.light();
     return baseTheme.copyWith(
-      primaryColor: const Color(0xFF0B235E),
+      primaryColor: const Color(0xFF041956),
       backgroundColor: const Color(0xFFF9FBFF),
       highlightColor: const Color(0xFFD916E4),
+      cardColor: Colors.white,
       colorScheme: baseTheme.colorScheme.copyWith(
         secondary: const Color(0xFF2D76EC),
         secondaryVariant: const Color(0xFF5F72A6),
-        surface: const Color(0xFFb8c0d3),
+        surface: const Color(0xFFB8C0D3),
       ),
       textTheme: baseTheme.textTheme.copyWith(
         bodyText2: baseTheme.textTheme.bodyText2?.copyWith(
@@ -26,20 +27,21 @@ class UITheme {
   static ThemeData getDarkTheme() {
     final baseTheme = ThemeData.dark();
     return baseTheme.copyWith(
-      primaryColor: const Color(0xFF0B235E),
-      backgroundColor: const Color(0xFFF9FBFF),
+      primaryColor: const Color(0xFF041956),
+      backgroundColor: const Color(0xFF344FA1),
+      highlightColor: const Color(0xFFD916E4),
+      cardColor: const Color(0xFF041956),
       colorScheme: baseTheme.colorScheme.copyWith(
-        secondary: const Color(0xFF2D76EC),
-        surface: const Color(0xFFb8c0d3),
-        //   background: const Color(0xFFFFBCD1),
+        secondary: const Color(0xFFD916E4),
+        secondaryVariant: const Color(0xFF5F72A6),
+        surface: const Color(0xFF173587),
       ),
       textTheme: baseTheme.textTheme.copyWith(
         bodyText2: baseTheme.textTheme.bodyText2?.copyWith(
-          color: const Color(0xFF020417),
+          color: Colors.white,
           fontSize: 16,
         ),
-        headline4: baseTheme.textTheme.headline6
-            ?.copyWith(color: const Color(0xFF373b5e)),
+        headline4: baseTheme.textTheme.headline6?.copyWith(color: Colors.white),
       ),
     );
   }

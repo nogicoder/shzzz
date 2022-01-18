@@ -7,8 +7,12 @@ import 'package:get/get.dart';
 
 class ImageAssets {
   static String? package;
-  static const img_path = 'assets/images';
-  static const ic_path = 'assets/icons';
+  static const image_path = 'assets/image';
+  static const svg_path = 'assets/svg';
+
+  static const flag_vi = '$image_path/flag_vi.png';
+  static const flag_en = '$image_path/flag_en.png';
+  static const ic_empty = '$svg_path/ic_empty.svg';
 
   //! Get placeholder image
   static String getTestImage(int width, [int height = 0]) {

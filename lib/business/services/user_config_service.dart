@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:shzzz/business/repository/repository.dart';
 
 import 'package:shzzz/business/services/index.dart';
 import 'package:shzzz/data/model/user_info.dart';
@@ -13,9 +14,10 @@ class UserConfigService extends GetxService {
 
   String get lang => storage.getLang();
 
-  setLang(String lang) {
-    Get.updateLocale(Locale(lang));
-    storage.updateLang(lang);
+  updateLocale() async {
+    final _lang = lang == LOCALE_VI ? LOCALE_EN : LOCALE_VI;
+    Get.updateLocale(Locale(_lang));
+    await storage.updateLang(_lang);
   }
 
   bool get isLightTheme => storage.getIsLightTheme() ?? false;
@@ -45,6 +47,8 @@ class UserConfigService extends GetxService {
 
   logOut() async {
     storage.clear();
+    repository.clearDatabase();
+    Get.changeThemeMode(ThemeMode.light);
     await AppBinding.inject();
     Get.offAllNamed(Routes.ONBOARDING_SCREEN);
   }

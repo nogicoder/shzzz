@@ -1,11 +1,11 @@
 {
-  "hello": "Hello",
-  "onboarding_1_title": "",
-  "onboarding_2_title": "",
-  "onboarding_3_title": "",
-  "onboarding_1_desc": "",
-  "onboarding_2_desc": "",
-  "onboarding_3_desc": "",
+  "hello": "Xin chào",
+  "onboarding_1_title": "Tối giản là chìa khoá",
+  "onboarding_2_title": "Công cụ bổ trợ hữu ích",
+  "onboarding_3_title": "Thống kê thông minh",
+  "onboarding_1_desc": "Tối ưu hoá nguồn năng lượng của bạn",
+  "onboarding_2_desc": "Quản lý toàn bộ hiệu suất của bạn một cách hợp lý",
+  "onboarding_3_desc": "Luôn nắm được những thông tin mà bạn quan tâm",
   "start_now": "Bắt đầu ngay",
   "how_to_call": "Tôi có thể gọi bạn là gì?",
   "lets_go": "Let's go",
@@ -30,5 +30,8 @@
   "home": "Trang chủ",
   "ongoing": "Chưa hoàn thành",
   "change_theme": "Đổi giao diện",
-  "contact_support": "Liên hệ hỗ trợ"
+  "contact_support": "Liên hệ hỗ trợ",
+  "empty_error": "Vui lòng nhập thông tin",
+  "empty_todos": "Woohoo! Hết việc rồi!",
+  "no_task_inside": "Không có công việc nào."
 }

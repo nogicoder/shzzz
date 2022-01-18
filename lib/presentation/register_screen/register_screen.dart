@@ -9,10 +9,12 @@ class RegisterScreen extends StatelessWidget {
 
   final TextEditingController textController = TextEditingController();
 
+  var hasError = false.obs;
+
   @override
   Widget build(BuildContext context) {
-    return Material(
-      child: Stack(
+    return Scaffold(
+      body: Stack(
         alignment: AlignmentDirectional.center,
         children: [
           Positioned(
@@ -24,10 +26,23 @@ class RegisterScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(tr().how_to_call,
-                      style: UITextStyle.headline5(FontWeight.bold)),
-                  TextField(
-                    controller: textController,
-                    decoration: InputDecoration(hintText: 'Eg: Peter'),
+                      style: UITextStyle.headline4(FontWeight.bold)),
+                  SizedBox(height: Constants.kOuterPadding),
+                  Obx(
+                    () => TextField(
+                      autofocus: true,
+                      controller: textController,
+                      onChanged: (value) => hasError.value = value.isEmpty,
+                      decoration: InputDecoration(
+                        hintText: 'Eg: Peter',
+                        border: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        errorText: hasError.value ? tr().empty_error : null,
+                        hintStyle: UITextStyle.headline5()
+                            ?.copyWith(color: Get.theme.colorScheme.surface),
+                      ),
+                      style: UITextStyle.headline5(),
+                    ),
                   )
                 ],
               ),
@@ -40,7 +55,8 @@ class RegisterScreen extends StatelessWidget {
             child: UIButton(
               title: tr().lets_go,
               onTap: () {
-                if (textController.text.isNotEmpty) {
+                hasError.value = textController.text.isEmpty;
+                if (!hasError.value) {
                   userConfigService
                       .setUserInfo(UserInfo(name: textController.text.trim()));
                   Get.toNamed(Routes.BASE_SCREEN);

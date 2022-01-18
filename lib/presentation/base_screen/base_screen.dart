@@ -47,6 +47,7 @@ class BaseScreen extends GetView<BaseScreenController> {
     return WillPopScope(
       onWillPop: () async => false,
       child: Material(
+        color: Get.theme.backgroundColor,
         child: AnimatedBuilder(
           animation: controller.animationController,
           builder: (context, _) {

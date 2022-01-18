@@ -37,6 +37,12 @@ class MyDatabase extends _$MyDatabase {
   @override
   int get schemaVersion => 1;
 
+  clear() async {
+    final dbFolder = await getApplicationDocumentsDirectory();
+    final file = File(p.join(dbFolder.path, 'db.sqlite'));
+    file.deleteSync();
+  }
+
   Stream<List<Todo>> getTodosWithStatus({bool isCompleted = false}) =>
       (select(todos)..where((tbl) => tbl.isCompleted.equals(isCompleted)))
           .watch();

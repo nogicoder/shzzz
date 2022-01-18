@@ -4,12 +4,15 @@ import 'package:shzzz/business/services/index.dart';
 import 'package:shzzz/presentation/base_screen/base_screen.dart';
 import 'package:shzzz/shared/index.dart';
 
+//ignore: must_be_immutable
 class UITabLayout extends StatelessWidget {
   final Widget child;
-  const UITabLayout({
+  UITabLayout({
     Key? key,
     required this.child,
   }) : super(key: key);
+
+  var _locale = userConfigService.lang.obs;
 
   @override
   Widget build(BuildContext context) {
@@ -18,26 +21,46 @@ class UITabLayout extends StatelessWidget {
       child: Stack(
         children: [
           Positioned.fill(
-            top: 170,
+            top: 185,
             child: child,
           ),
           Positioned(
             top: 50,
             left: Constants.kOuterPadding,
+            right: Constants.kOuterPadding,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                InkWell(
-                  onTap: () => Get.find<BaseScreenController>().toggle(),
-                  child: Icon(
-                    Icons.menu,
-                    color: Get.theme.primaryColor,
-                    size: 40,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () => Get.find<BaseScreenController>().toggle(),
+                      child: Icon(
+                        Icons.menu,
+                        color: Get.theme.primaryColor,
+                        size: 40,
+                      ),
+                    ),
+                    Obx(
+                      () {
+                        return InkWell(
+                          onTap: userConfigService.updateLocale,
+                          child: _locale == LOCALE_VI
+                              ? Image.asset(ImageAssets.flag_vi,
+                                  width: 40, height: 40)
+                              : Image.asset(ImageAssets.flag_en,
+                                  width: 30, height: 30),
+                        );
+                      },
+                    ),
+                  ],
                 ),
                 SizedBox(height: Constants.kOuterPadding),
                 Text(
-                  "What's up, ${userConfigService.userInfo?.name ?? ''}!",
+                  "${tr().hello}, ${userConfigService.userInfo?.name?.split(' ').first ?? ''}!",
+                  maxLines: 2,
+                  overflow: TextOverflow.visible,
                   style: UITextStyle.headline4(FontWeight.bold),
                 ),
               ],

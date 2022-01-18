@@ -24,7 +24,6 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: Get.theme.cardColor,
       padding: Constants.kPaddingStandard,
       child: Column(
         children: [
@@ -55,8 +54,8 @@ class OnboardingScreen extends StatelessWidget {
       children: [
         SizedBox(
           height: Get.height * 0.45,
-          child: ImageAssets.svgAssets(
-              '${ImageAssets.img_path}/onboarding_${index + 1}.svg'),
+          child: ImageAssets.pngAsset(
+              '${ImageAssets.image_path}/onboarding_${index + 1}.jpeg'),
         ),
         Container(
           height: Get.height * 0.07,

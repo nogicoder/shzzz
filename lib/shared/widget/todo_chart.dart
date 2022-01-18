@@ -60,7 +60,7 @@ class TodoChart extends GetView<BaseScreenController> {
         interval: 1,
         reservedSize: 40,
         getTextStyles: (context, value) => const TextStyle(
-          color: Color(0xff75729e),
+          color: Color(0xff75729E),
           fontWeight: FontWeight.bold,
           fontSize: 14,
         ),

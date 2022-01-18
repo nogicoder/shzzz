@@ -59,9 +59,7 @@ class UITodoItem extends StatelessWidget {
               Text(
                 todo.title,
                 style: UITextStyle.bodyStyle(
-                  color: (todo.isCompleted ?? false)
-                      ? Get.theme.colorScheme.surface
-                      : null,
+                  color: null,
                 ).copyWith(
                     decoration: (todo.isCompleted ?? false)
                         ? TextDecoration.lineThrough
