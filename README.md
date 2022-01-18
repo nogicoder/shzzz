@@ -1,6 +1,13 @@
 # Shzzz
 
-Getting shzzz done, fast.
+A "boring" Todo application that works.
+
+## Index
+
+- [Project Structure](#project-structure)
+- [Technology](#technology)
+- [Installation](#installation)
+- [Upcoming Feature](#upcoming-feature)
 
 ## Project Structure
 
@@ -13,9 +20,23 @@ There are 3 layers to the app:
 - Business layer: Manages CRUD interaction between the `Presentation` and `Data` layer through a `Repository` class
 - Presentation layer: Presents the data and handles user interaction with the app
 
+### Technology
 
-## Upcoming Features
+Flutter: 2.8.1 (channel `stable`)
+Dart: 2.15.1
 
-- Background image, avatar image upload
+### Installation
+
+Run the app with following steps:
+- Make sure you are on the correct version of `Flutter` and `Dart`
+- Run `flutter pub get`
+- Run `flutter run`
+
+To run the tests, follow these steps:
+- Run `flutter test`
+
+## Upcoming Feature
+
+- Background image, avatar image upload with Firebase
 - Mark as favorite
-- Session management
+- Session management with Firebase
