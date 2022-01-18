@@ -43,7 +43,7 @@ class MyDatabase extends _$MyDatabase {
       (select(todos)..where((tbl) => tbl.isCompleted.equals(isCompleted)))
           .watch();
 
-  Stream<List<TodoCount>> getCompletedCountByDate() {
+  Stream<List<TodoCount>> getCompletedCountByCompletionTime() {
     return customSelect(
         'SELECT COUNT(id) AS "itemCount", completedTime FROM todos WHERE is_completed IS TRUE GROUP BY completedTime ORDER BY completedTime',
         readsFrom: {todos}).watch().map((rows) {
@@ -68,7 +68,7 @@ class MyDatabase extends _$MyDatabase {
     });
   }
 
-  Stream<List<TodoCount>> getCountByDueDate() {
+  Stream<List<TodoCount>> getCountByDueTime() {
     return customSelect(
         'SELECT COUNT(id) AS "itemCount", due_time FROM todos GROUP BY due_time ORDER BY due_time',
         readsFrom: {todos}).watch().map((rows) {

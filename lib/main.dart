@@ -11,6 +11,12 @@ void main() async {
   runApp(TaskApp());
 }
 
+/// Inject services on app start.
+/// [Repository] is for connecting the app's Presentation with Local Database
+/// [StorageService] provides method to interact with `SharedPreferences`
+/// [UserConfigService] holds the infos of app's theme, languageCode, etc
+/// [EventService] provides a background layer a screen can use to notify
+/// other screens.
 class AppBinding {
   static inject() async {
     Get.put(Repository());

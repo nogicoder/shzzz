@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:shzzz/business/services/index.dart';
 import 'package:shzzz/shared/index.dart';
 
+/// [OnboardingScreen] displays the welcome images and texts that introduce
+/// users about the app's main functionalities
 //ignore: must_be_immutable
 class OnboardingScreen extends StatelessWidget {
   final PageController controller = PageController();
@@ -28,23 +30,25 @@ class OnboardingScreen extends StatelessWidget {
       color: Colors.white,
       child: Column(
         children: [
-          Expanded(
-            child: PageView(
-              controller: controller,
-              onPageChanged: (index) => currentIndex.value = index,
-              children: List<Widget>.generate(
-                titles.length,
-                (index) => _buildOnboardingPage(
-                  index,
-                ),
-              ),
-            ),
-          ),
+          Expanded(child: _buildPageView()),
           _buildIndicators(),
           SizedBox(height: Constants.kOuterPadding),
           _buildButtons(),
           SizedBox(height: 50),
         ],
+      ),
+    );
+  }
+
+  Widget _buildPageView() {
+    return PageView(
+      controller: controller,
+      onPageChanged: (index) => currentIndex.value = index,
+      children: List<Widget>.generate(
+        titles.length,
+        (index) => _buildOnboardingPage(
+          index,
+        ),
       ),
     );
   }

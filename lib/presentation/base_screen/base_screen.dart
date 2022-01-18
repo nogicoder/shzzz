@@ -28,10 +28,10 @@ class BaseScreenController extends GetxController
     repository.getTodosWithStatus(isCompleted: true).listen((event) {
       completedTodos.value = event;
     });
-    repository.getCompletedCountByDate().listen((event) {
+    repository.getCompletedCountByCompletionTime().listen((event) {
       completedCounts.value = event;
     });
-    repository.getCountByDueDate().listen((event) {
+    repository.getCountByDueTime().listen((event) {
       ongoingCounts.value = event;
     });
 
