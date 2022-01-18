@@ -25,6 +25,7 @@ class OnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: Constants.kPaddingStandard,
+      color: Get.theme.cardColor,
       child: Column(
         children: [
           Expanded(
@@ -50,12 +51,12 @@ class OnboardingScreen extends StatelessWidget {
 
   Widget _buildOnboardingPage(int index) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
         SizedBox(
-          height: Get.height * 0.45,
+          height: Get.height * 0.35,
           child: ImageAssets.pngAsset(
-              '${ImageAssets.image_path}/onboarding_${index + 1}.jpeg'),
+              '${ImageAssets.image_path}/onboarding_${index + 1}.png'),
         ),
         Container(
           height: Get.height * 0.07,

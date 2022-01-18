@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shzzz/business/services/index.dart';
@@ -17,6 +18,16 @@ class RegisterScreen extends StatelessWidget {
       body: Stack(
         alignment: AlignmentDirectional.center,
         children: [
+          Positioned(
+            top: 100,
+            left: 0,
+            right: 0,
+            child: SizedBox(
+              width: 50,
+              height: 50,
+              child: ImageAssets.svgAssets(ImageAssets.ic_logo),
+            ),
+          ),
           Positioned(
             left: Constants.kOuterPadding,
             right: Constants.kOuterPadding,

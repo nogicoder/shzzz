@@ -20,7 +20,7 @@ class UserConfigService extends GetxService {
     await storage.updateLang(_lang);
   }
 
-  bool get isLightTheme => storage.getIsLightTheme() ?? false;
+  bool get isLightTheme => storage.getIsLightTheme();
 
   setTheme() {
     Get.changeThemeMode(isLightTheme ? ThemeMode.dark : ThemeMode.light);
@@ -47,8 +47,10 @@ class UserConfigService extends GetxService {
 
   logOut() async {
     storage.clear();
-    repository.clearDatabase();
     Get.changeThemeMode(ThemeMode.light);
+    print(Get.theme);
+    print(isLightTheme);
+    repository.clearDatabase();
     await AppBinding.inject();
     Get.offAllNamed(Routes.ONBOARDING_SCREEN);
   }
