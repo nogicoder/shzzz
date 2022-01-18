@@ -18,7 +18,7 @@ class HomeLayer extends GetView<BaseScreenController> {
       child: CupertinoTabScaffold(
         tabBar: CupertinoTabBar(
           activeColor: Get.theme.colorScheme.secondary,
-          inactiveColor: Get.theme.backgroundColor,
+          inactiveColor: Get.theme.colorScheme.secondaryVariant,
           iconSize: 24,
           items: [
             BottomNavigationBarItem(

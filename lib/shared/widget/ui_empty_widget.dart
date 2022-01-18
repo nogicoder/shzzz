@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:shzzz/shared/index.dart';
 
 class UIEmptyWidget extends StatelessWidget {
@@ -12,11 +13,14 @@ class UIEmptyWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        ImageAssets.svgAssets(ImageAssets.ic_empty),
+        ImageAssets.svgAssets(ImageAssets.ic_empty,
+            color: Get.theme.colorScheme.secondaryVariant),
         SizedBox(height: Constants.kOuterPadding),
         Text(
           message ?? '',
-          style: UITextStyle.bodyText2(),
+          style: UITextStyle.bodyStyle(
+            color: Get.theme.colorScheme.secondaryVariant,
+          ),
         ),
       ],
     );

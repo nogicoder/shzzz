@@ -21,7 +21,7 @@ class HomeTab extends StatelessWidget {
     return Obx(
       () => CustomScrollView(
         slivers: [
-          ongoingTodos.isEmpty
+          ongoingTodos.isEmpty && completedTodos.isEmpty
               ? SliverPadding(
                   padding: EdgeInsets.only(top: 100),
                   sliver: SliverToBoxAdapter(
