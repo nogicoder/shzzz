@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
 import 'package:shzzz/data/database/todo_table.dart';
 import 'package:shzzz/presentation/index.dart';
-import 'package:shzzz/presentation/base_screen/base_screen_controller.dart';
 
+/// Holds the route names and list of [getPages] to navigate by routes names
 class Routes {
   static const ONBOARDING_SCREEN = '/';
   static const REGISTER_SCREEN = '/REGISTER_SCREEN';
@@ -25,7 +25,8 @@ class Routes {
   ];
 }
 
-goCreateTaskScreen() => Get.dialog(CreateTaskScreen(), useSafeArea: false);
-
-goUpdateTaskScreen(Todo todo) =>
-    Get.dialog(CreateTaskScreen(todo: todo), useSafeArea: false);
+/// Display create todo dialog
+/// Take in a [Todo] as input, if it's null then the dialog will create a new
+/// todo item, otherwise it's an update of existing todo item
+goCreateTodoDialog({Todo? todo}) =>
+    Get.dialog(CreateTodoDialog(todo: todo), useSafeArea: false);

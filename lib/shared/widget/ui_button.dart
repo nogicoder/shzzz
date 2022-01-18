@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shzzz/shared/index.dart';
 
+/// Common button widget with basic properties such as: [title], [width],
+/// [height], [buttonColor], etc
 class UIButton extends StatelessWidget {
   final String? title;
   final bool isDisable;

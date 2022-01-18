@@ -6,6 +6,10 @@ import 'package:shzzz/business/repository/repository.dart';
 import 'package:shzzz/data/database/todo_table.dart';
 import 'package:shzzz/shared/index.dart';
 
+/// Holds the logic for [UITodoItem]. Provides 2 methods:
+/// - [updateStatus]: Update completion status of the item
+/// - [deleteTodo]: Delete the todo item from Local Database, then displays a
+/// Snackbar notifying the user
 class UITodoItemController extends GetxController {
   void updateStatus(Todo todo) => repository.updateCompletion(todo);
 
@@ -15,6 +19,11 @@ class UITodoItemController extends GetxController {
   }
 }
 
+/// Display the UI for a single todo item with following elements:
+/// - A [Checkbox] to reflects completion status of the todo item
+/// - A [String] to display the item's title
+/// The widget is slidable to the left, revealing the delete button to remove
+/// the todo item from Local Database using [MyDatabase.deleteEntry]
 class UITodoItem extends StatelessWidget {
   final Todo todo;
   UITodoItem({Key? key, required this.todo}) : super(key: key);
@@ -24,7 +33,7 @@ class UITodoItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => goUpdateTaskScreen(todo),
+      onTap: () => goCreateTodoDialog(todo: todo),
       child: Slidable(
         endActionPane: ActionPane(motion: ScrollMotion(), children: [
           SlidableAction(

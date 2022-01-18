@@ -5,6 +5,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+/// [ImageAssets] provides ready-to-use variables represent local icons and
+/// various methods to display svg and local images
 class ImageAssets {
   static String? package;
   static const image_path = 'assets/image';
@@ -21,6 +23,7 @@ class ImageAssets {
     return 'https://picsum.photos/$width${height > 0 ? '/$height' : ''}?x=${Random().nextInt(100)}';
   }
 
+  /// Display an svg asset using [SvgPicture.asset]
   static SvgPicture svgAssets(
     String name, {
     Color? color,
@@ -38,6 +41,7 @@ class ImageAssets {
     );
   }
 
+  /// Display an svg network asset using [SvgPicture.network]
   static Widget svgUrl(String name,
       {Color? color,
       double? width,
@@ -59,6 +63,7 @@ class ImageAssets {
     );
   }
 
+  /// Display a local image asset using [Image.asset]
   static Widget pngAsset(String name,
       {Color? color,
       double? width,
@@ -89,6 +94,8 @@ class ImageAssets {
     );
   }
 
+  /// Display network images using [CachedNetworkProvider]. Display a
+  /// [CupertinoActivityIndicator] on top when loading
   static Widget networkImage(
       {String? url,
       double? width,

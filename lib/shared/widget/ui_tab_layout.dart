@@ -41,7 +41,7 @@ class UITabLayout extends StatelessWidget {
             right: 30,
             child: FloatingActionButton(
               child: Icon(Icons.add),
-              onPressed: () => goCreateTaskScreen(),
+              onPressed: () => goCreateTodoDialog(),
             ),
           )
         ],

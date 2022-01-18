@@ -6,6 +6,8 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:shzzz/generated/l10n.dart';
 
+/// Provides numerous formatting options when handling different data types
+
 S tr() => S.of(Get.context!);
 
 final viLocale = "vi_VN";
@@ -31,9 +33,6 @@ final formatDateTime = DateFormat("hh:mm a dd/MM/yyyy");
 final _formatMMMYYYY = DateFormat("MMMM yyyy");
 final _formatMMYYYY = DateFormat("MM/yyyy");
 final _formatEEE = DateFormat("EEE");
-
-///this file's purpose is converting from dynamic to String
-///and any files in the parent's folder (ext) work in similar rule
 
 bool toBool(value, [bool defaultValue = false]) {
   if (value == null) return defaultValue;

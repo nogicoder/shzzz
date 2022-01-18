@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shzzz/shared/index.dart';
 
+/// Common widget to represent lack of data on the UI
 class UIEmptyWidget extends StatelessWidget {
   final String? message;
   const UIEmptyWidget({

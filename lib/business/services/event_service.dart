@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:shzzz/shared/index.dart';
-import 'package:shzzz/shared/util/utils.dart';
 
 class EventService extends GetxService {
   var progressVisible = false.obs;
@@ -35,7 +34,7 @@ class EventService extends GetxService {
 
   void fireEvent(AppEvent event, {String? marketControllerTag}) async {
     try {} catch (error) {
-      logger.e(error.toString());
+      print(error.toString());
     }
   }
 }

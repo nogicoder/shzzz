@@ -1,64 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
+
 import 'package:get/get.dart';
-import 'package:shzzz/business/repository/repository.dart';
+
 import 'package:shzzz/data/database/todo_table.dart';
 import 'package:shzzz/shared/index.dart';
+import 'package:shzzz/presentation/base_screen/components/create_todo_dialog/create_todo_controller.dart';
 
-class CreateTaskController extends GetxController {
-  final Todo? todo;
-  CreateTaskController({this.todo});
-
-  final FocusNode focusNode = FocusNode();
-  final FocusNode noteFocusNode = FocusNode();
-  late final textController = TextEditingController(text: todo?.title);
-  late final noteController = TextEditingController(text: todo?.content);
-  late var hasNote = (todo?.content?.isNotEmpty ?? false).obs;
-  late var dueTime = (todo?.dueTime ?? DateTime.now()).obs;
-
-  var hasError = false.obs;
-
-  void addTodo(Todo entry) {
-    if (todo != null) {
-      repository.updateTodo(entry);
-    } else {
-      repository.addTodo(entry);
-    }
-    Get.back();
-    Get.snackbar(APP_TITLE,
-        todo != null ? tr().success_updating_task : tr().success_adding_task);
-  }
-
-  bool validate() {
-    if (textController.text.length >= Constants.MIN_TITLE_LENGTH &&
-        textController.text.length <= Constants.MAX_TITLE_LENGTH &&
-        noteController.text.length <= Constants.MAX_NOTE_LENGTH) {
-      return true;
-    }
-    DialogUtil.alert(tr().please_check_input);
-    return false;
-  }
-
-  @override
-  void dispose() {
-    textController.dispose();
-    noteController.dispose();
-    focusNode.dispose();
-    noteFocusNode.dispose();
-    super.dispose();
-  }
-}
-
+/// Display the dialog to create new todo item, includes:
+/// - A [TextField] ask for the todo item's title
+/// - A [DateTimePicker] to ask for the todo item's due date
+/// - A button allows user to add note for the todo item
 //ignore: must_be_immutable
-class CreateTaskScreen extends GetView<CreateTaskController> {
+class CreateTodoDialog extends GetView<CreateTodoController> {
   final Todo? todo;
-  CreateTaskScreen({Key? key, this.todo}) : super(key: key);
+  CreateTodoDialog({Key? key, this.todo}) : super(key: key);
 
-  late CreateTaskController controller;
+  late CreateTodoController controller;
 
   @override
   Widget build(BuildContext context) {
-    controller = Get.put(CreateTaskController(todo: todo));
+    controller = Get.put(CreateTodoController(todo: todo));
     return Scaffold(
       backgroundColor: Get.theme.backgroundColor,
       body: InkWell(
@@ -91,17 +53,7 @@ class CreateTaskScreen extends GetView<CreateTaskController> {
               right: 100,
               child: UIButton(
                 title: todo != null ? tr().update : tr().create_task,
-                onTap: () {
-                  if (controller.validate()) {
-                    final Todo item = Todo(
-                      title: controller.textController.text,
-                      content: controller.noteController.text,
-                      createdTime: DateTime.now(),
-                      dueTime: controller.dueTime.value,
-                    );
-                    controller.addTodo(item);
-                  }
-                },
+                onTap: controller.addTodo,
                 buttonColor: Get.theme.colorScheme.secondary,
               ),
             ),
@@ -150,6 +102,8 @@ class CreateTaskScreen extends GetView<CreateTaskController> {
     );
   }
 
+  /// The Note field will only display if the [controller.hasNote] state is
+  /// set to true.
   Widget _buildNoteField() {
     return Obx(() {
       if (controller.hasNote.value) {

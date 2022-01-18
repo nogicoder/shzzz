@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shzzz/shared/index.dart';
 
+/// Display an expandable section title
 class UISectionTitle extends StatelessWidget {
   final String? title;
   final bool isExpanded;

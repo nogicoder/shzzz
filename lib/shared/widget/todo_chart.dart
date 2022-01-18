@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shzzz/presentation/base_screen/base_screen_controller.dart';
 
+/// [TodoChart] is a line chart displays:
+/// - Trend of numbers of todo items completed based on their completion time
+/// - Trend of numbers of todo items created based on their due time
 class TodoChart extends GetView<BaseScreenController> {
   @override
   Widget build(BuildContext context) {
