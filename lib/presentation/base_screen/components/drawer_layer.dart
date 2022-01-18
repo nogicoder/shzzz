@@ -74,7 +74,7 @@ class DrawerLayer extends GetView<BaseScreenController> {
               'v${drawerController.packageInfo.value}',
               style: UITextStyle.bodyStyle(color: Colors.white),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -94,7 +94,6 @@ class DrawerLayer extends GetView<BaseScreenController> {
                   ? Icons.wb_sunny_outlined
                   : Icons.nightlight_round,
               color: Get.theme.colorScheme.secondaryVariant,
-              size: 26,
             ),
           ),
           SizedBox(width: Constants.kOuterPadding),
@@ -115,7 +114,6 @@ class DrawerLayer extends GetView<BaseScreenController> {
           Icon(
             CupertinoIcons.conversation_bubble,
             color: Get.theme.colorScheme.secondaryVariant,
-            size: 25,
           ),
           SizedBox(width: Constants.kOuterPadding),
           Text(

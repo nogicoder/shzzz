@@ -45,7 +45,6 @@ class UserConfigService extends GetxService {
 
   logOut() async {
     storage.clear();
-    Get.reset();
     await AppBinding.inject();
     Get.offAllNamed(Routes.ONBOARDING_SCREEN);
   }

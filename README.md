@@ -16,6 +16,6 @@ There are 3 layers to the app:
 
 ## Upcoming Features
 
-- Background image, avatar image
-- Star task
-- View deadline in 3 days
+- Background image
+- Mark as favorite
+- Session management
