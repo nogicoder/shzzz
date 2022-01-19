@@ -35,14 +35,14 @@ class CreateTodoController extends GetxController {
     }
     if (todo != null) {
       return await repository.updateTodo(todo!.copyWith(
-        title: textController.text,
-        content: noteController.text,
+        title: textController.text.trim(),
+        content: noteController.text.trim(),
         dueTime: dueTime.value,
       ));
     } else {
       return await repository.addTodo(Todo(
-        title: textController.text,
-        content: noteController.text,
+        title: textController.text.trim(),
+        content: noteController.text.trim(),
         dueTime: dueTime.value,
         createdTime: DateTime.now(),
       ));
@@ -55,9 +55,10 @@ class CreateTodoController extends GetxController {
   /// - The note's length must be less than [Constants.MAX_NOTE_LENGTH]
   /// Else the user will receive an error alert
   void validate() {
-    hasError.value = textController.text.length < Constants.MIN_TITLE_LENGTH ||
-        textController.text.length > Constants.MAX_TITLE_LENGTH ||
-        noteController.text.length > Constants.MAX_NOTE_LENGTH;
+    hasError.value =
+        textController.text.trim().length < Constants.MIN_TITLE_LENGTH ||
+            textController.text.trim().length > Constants.MAX_TITLE_LENGTH ||
+            noteController.text.trim().length > Constants.MAX_NOTE_LENGTH;
   }
 
   @override

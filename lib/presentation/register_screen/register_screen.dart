@@ -13,33 +13,37 @@ class RegisterScreen extends StatelessWidget {
   RegisterScreen({Key? key}) : super(key: key);
 
   final TextEditingController textController = TextEditingController();
+  final FocusNode focusNode = FocusNode();
 
   var hasError = false.obs;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
-        alignment: AlignmentDirectional.center,
-        children: [
-          Positioned(
-            top: 70,
-            left: 0,
-            right: 0,
-            child: _buildLogo(),
-          ),
-          Positioned(
-            left: Constants.kOuterPadding,
-            right: Constants.kOuterPadding,
-            child: _buildNameField(),
-          ),
-          Positioned(
-            bottom: Constants.kOuterPadding,
-            left: Constants.kOuterPadding,
-            right: Constants.kOuterPadding,
-            child: _buildSubmitButton(),
-          )
-        ],
+    return GestureDetector(
+      onTap: () => focusNode.unfocus(),
+      child: Scaffold(
+        body: Stack(
+          alignment: AlignmentDirectional.center,
+          children: [
+            Positioned(
+              top: 70,
+              left: 0,
+              right: 0,
+              child: _buildLogo(),
+            ),
+            Positioned(
+              left: Constants.kOuterPadding,
+              right: Constants.kOuterPadding,
+              child: _buildNameField(),
+            ),
+            Positioned(
+              bottom: Constants.kOuterPadding,
+              left: Constants.kOuterPadding,
+              right: Constants.kOuterPadding,
+              child: _buildSubmitButton(),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -69,6 +73,7 @@ class RegisterScreen extends StatelessWidget {
             () => TextField(
               autofocus: true,
               controller: textController,
+              focusNode: focusNode,
               maxLength: Constants.MAX_TITLE_LENGTH,
               onChanged: (value) => checkError(),
               decoration: InputDecoration(
@@ -94,7 +99,7 @@ class RegisterScreen extends StatelessWidget {
     return Obx(
       () => UIButton(
         title: tr().lets_go,
-        isDisable: hasError.value || textController.text.isEmpty,
+        isDisable: hasError.value || textController.text.trim().isEmpty,
         onTap: () {
           userConfigService
               .setUserInfo(UserInfo(name: textController.text.trim()));
@@ -106,6 +111,6 @@ class RegisterScreen extends StatelessWidget {
 
   void checkError() {
     hasError.value = textController.text.isEmpty ||
-        textController.text.length > Constants.MAX_TITLE_LENGTH;
+        textController.text.trim().length > Constants.MAX_TITLE_LENGTH;
   }
 }

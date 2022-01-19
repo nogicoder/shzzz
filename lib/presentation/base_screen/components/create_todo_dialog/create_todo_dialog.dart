@@ -104,7 +104,6 @@ class CreateTodoDialog extends GetView<CreateTodoController> {
             hintText: tr().enter_task,
             errorText: controller.hasError.value ? tr().min_length_error : null,
             errorStyle: UITextStyle.bodyStyle(color: Colors.red),
-            counterText: '',
           ),
           style: UITextStyle.headline4(),
           maxLength: Constants.MAX_TITLE_LENGTH,
@@ -146,7 +145,7 @@ class CreateTodoDialog extends GetView<CreateTodoController> {
           Get.context!,
           minTime: DateTime.now(),
           onConfirm: (date) => controller.dueTime.value = date,
-          currentTime: DateTime.now(),
+          currentTime: controller.dueTime.value,
           locale: LocaleType.vi,
         );
       },
