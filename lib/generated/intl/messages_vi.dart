@@ -54,15 +54,15 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Không có công việc nào."),
         "ok": MessageLookupByLibrary.simpleMessage("Đồng ý"),
         "onboarding_1_desc": MessageLookupByLibrary.simpleMessage(
-            "Tối ưu hoá nguồn năng lượng của bạn"),
+            "Cải thiện hiệu suất làm việc mà không cần lo nghĩ"),
         "onboarding_1_title":
             MessageLookupByLibrary.simpleMessage("Tối giản là chìa khoá"),
         "onboarding_2_desc": MessageLookupByLibrary.simpleMessage(
-            "Quản lý toàn bộ hiệu suất của bạn một cách hợp lý"),
+            "Giúp bạn tiết kiệm năng lượng cho một ngày làm việc hiệu quả"),
         "onboarding_2_title":
             MessageLookupByLibrary.simpleMessage("Công cụ bổ trợ hữu ích"),
         "onboarding_3_desc": MessageLookupByLibrary.simpleMessage(
-            "Luôn nắm được những thông tin mà bạn quan tâm"),
+            "Tối ưu hoá dựa trên những số liệu cập nhật hàng giây!"),
         "onboarding_3_title":
             MessageLookupByLibrary.simpleMessage("Thống kê thông minh"),
         "ongoing": MessageLookupByLibrary.simpleMessage("Chưa hoàn thành"),

@@ -70,7 +70,7 @@ class RegisterScreen extends StatelessWidget {
               autofocus: true,
               controller: textController,
               maxLength: Constants.MAX_TITLE_LENGTH,
-              onChanged: (value) => hasError.value = value.isEmpty,
+              onChanged: (value) => checkError(),
               decoration: InputDecoration(
                 hintText: 'Eg: Peter',
                 border: InputBorder.none,
@@ -91,16 +91,21 @@ class RegisterScreen extends StatelessWidget {
   /// Save the user's info to [SharedPreferences] using [UserConfigService],
   /// then navigate to [BaseScreen]
   Widget _buildSubmitButton() {
-    return UIButton(
-      title: tr().lets_go,
-      onTap: () {
-        hasError.value = textController.text.isEmpty;
-        if (!hasError.value) {
+    return Obx(
+      () => UIButton(
+        title: tr().lets_go,
+        isDisable: hasError.value || textController.text.isEmpty,
+        onTap: () {
           userConfigService
               .setUserInfo(UserInfo(name: textController.text.trim()));
           Get.toNamed(Routes.BASE_SCREEN);
-        }
-      },
+        },
+      ),
     );
+  }
+
+  void checkError() {
+    hasError.value = textController.text.isEmpty ||
+        textController.text.length > Constants.MAX_TITLE_LENGTH;
   }
 }

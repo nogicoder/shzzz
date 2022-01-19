@@ -51,10 +51,14 @@ class CreateTodoDialog extends GetView<CreateTodoController> {
               bottom: 40,
               left: 100,
               right: 100,
-              child: UIButton(
-                title: todo != null ? tr().update : tr().create_task,
-                onTap: controller.addTodo,
-                buttonColor: Get.theme.colorScheme.secondary,
+              child: Obx(
+                () => UIButton(
+                  title: todo != null ? tr().update : tr().create_task,
+                  isDisable: controller.hasError.value ||
+                      controller.textController.text.isEmpty,
+                  onTap: controller.addTodo,
+                  buttonColor: Get.theme.colorScheme.secondary,
+                ),
               ),
             ),
             Positioned(
