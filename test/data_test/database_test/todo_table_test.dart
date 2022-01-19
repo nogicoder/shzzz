@@ -25,17 +25,59 @@ void main() {
     await database.close();
   });
 
-  test('todo can be created', () async {
+  test('todo can be created with addTodo()', () async {
     final id1 = await database.addTodo(_todo1.toCompanion(true));
     final id2 = await database.addTodo(_todo2.toCompanion(true));
     expect(id1, 0);
     expect(id2, 1);
   });
 
-  test('stream emits a new user when the name updates', () async {
+  test('getTodosWithStatus() emits todo lists when creating new todo items',
+      () async {
+    await expectLater(
+      database.getTodosWithStatus(),
+      emitsInOrder([[]]),
+    );
+
     await database.addTodo(_todo1.toCompanion(true));
+    await expectLater(
+      database
+          .getTodosWithStatus()
+          .map((data) => data.map((item) => item.title).toList()),
+      emitsInOrder([
+        [_todo1.title]
+      ]),
+    );
+
     await database.addTodo(_todo2.toCompanion(true));
-    final expectation = expectLater(
+    await expectLater(
+      database
+          .getTodosWithStatus()
+          .map((data) => data.map((item) => item.title).toList()),
+      emitsInOrder([
+        [_todo1.title, _todo2.title]
+      ]),
+    );
+  });
+
+  test('table can be cleared with clear()', () async {
+    await expectLater(
+      database.getTodosWithStatus(),
+      emitsInOrder([[]]),
+    );
+
+    await database.addTodo(_todo1.toCompanion(true));
+    await expectLater(
+      database
+          .getTodosWithStatus()
+          .map((data) => data.map((item) => item.title).toList()),
+      emitsInOrder([
+        [_todo1.title]
+      ]),
+    );
+
+    await database.addTodo(_todo2.toCompanion(true));
+    await expectLater(
       database
           .getTodosWithStatus()
           .map((data) => data.map((item) => item.title).toList()),
@@ -44,6 +86,11 @@ void main() {
       ]),
     );
 
-    await expectation;
+    expect(await database.clear(), 2);
+
+    await expectLater(
+      database.getTodosWithStatus(),
+      emitsInOrder([[]]),
+    );
   });
 }

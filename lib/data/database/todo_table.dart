@@ -37,7 +37,33 @@ class MyDatabase extends _$MyDatabase {
   @override
   int get schemaVersion => 1;
 
-  clear() async => await delete(todos).go();
+  Future<int> addTodo(TodosCompanion entry) {
+    return into(todos).insert(entry);
+  }
+
+  Future<int> updateTodo(Todo todo) {
+    return (update(todos)..where((tbl) => tbl.id.equals(todo.id))).write(
+      TodosCompanion(
+        title: Value(todo.title),
+        content: Value.ofNullable(todo.content),
+        dueTime: Value.ofNullable(todo.dueTime),
+        isCompleted: Value.ofNullable(
+          !(todo.isCompleted ?? false),
+        ),
+      ),
+    );
+  }
+
+  Future<int> updateCompletion(Todo todo) {
+    return (update(todos)..where((tbl) => tbl.id.equals(todo.id))).write(
+        TodosCompanion(
+            isCompleted: Value.ofNullable(!(todo.isCompleted ?? false)),
+            completedTime: Value(DateTime.now())));
+  }
+
+  Future<int> deleteEntry(Todo entry) {
+    return delete(todos).delete(entry);
+  }
 
   Stream<List<Todo>> getTodosWithStatus({bool isCompleted = false}) =>
       (select(todos)..where((tbl) => tbl.isCompleted.equals(isCompleted)))
@@ -92,34 +118,8 @@ class MyDatabase extends _$MyDatabase {
     });
   }
 
+  Future<int> clear() => delete(todos).go();
+
   checkEqualsDate(DateTime first, DateTime second) =>
       first.formatDMY == second.formatDMY;
-
-  Future<int> addTodo(TodosCompanion entry) {
-    return into(todos).insert(entry);
-  }
-
-  Future<int> updateTodo(Todo todo) {
-    return (update(todos)..where((tbl) => tbl.id.equals(todo.id))).write(
-      TodosCompanion(
-        title: Value(todo.title),
-        content: Value.ofNullable(todo.content),
-        dueTime: Value.ofNullable(todo.dueTime),
-        isCompleted: Value.ofNullable(
-          !(todo.isCompleted ?? false),
-        ),
-      ),
-    );
-  }
-
-  Future<int> updateCompletion(Todo todo) {
-    return (update(todos)..where((tbl) => tbl.id.equals(todo.id))).write(
-        TodosCompanion(
-            isCompleted: Value.ofNullable(!(todo.isCompleted ?? false)),
-            completedTime: Value(DateTime.now())));
-  }
-
-  Future<int> deleteEntry(Todo entry) {
-    return delete(todos).delete(entry);
-  }
 }
