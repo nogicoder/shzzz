@@ -5,3 +5,4 @@ export 'widget/index.dart';
 export 'util/index.dart';
 export 'theme/index.dart';
 export 'strings.dart';
+export 'extension.dart';
