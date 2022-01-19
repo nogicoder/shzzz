@@ -7,6 +7,7 @@ import 'package:shzzz/business/repository/repository.dart';
 import 'package:shzzz/business/services/index.dart';
 import 'package:shzzz/data/database/todo_table.dart';
 import 'package:shzzz/data/model/user_info.dart';
+import 'package:shzzz/generated/l10n.dart';
 import 'package:shzzz/presentation/index.dart';
 import 'package:shzzz/shared/index.dart';
 
@@ -19,9 +20,10 @@ class UserConfigService extends GetxService {
 
   /// Change locale using Getx, then update the value in [SharedPreferences]
   updateLocale() async {
-    final _lang = lang == LOCALE_VI ? LOCALE_EN : LOCALE_VI;
-    Get.updateLocale(Locale(_lang));
-    await storage.updateLang(_lang);
+    final _newLang = lang == LOCALE_VI ? LOCALE_EN : LOCALE_VI;
+    await storage.updateLang(_newLang);
+    S.load(Locale(_newLang));
+    await Get.updateLocale(Locale(_newLang));
   }
 
   bool get isLightTheme => storage.getIsLightTheme();
