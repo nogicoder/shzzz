@@ -52,8 +52,8 @@ class MyDatabase extends _$MyDatabase {
   int get schemaVersion => 1;
 
   /// Insert new todo item into the Database
-  Future<int> addTodo(TodosCompanion entry) {
-    return into(todos).insert(entry);
+  Future<int> addTodo(Todo entry) {
+    return into(todos).insert(entry.toCompanion(true));
   }
 
   /// Update existing todo item
@@ -64,8 +64,8 @@ class MyDatabase extends _$MyDatabase {
     return (update(todos)..where((tbl) => tbl.id.equals(todo.id))).write(
       TodosCompanion(
         title: Value(todo.title),
-        content: Value.ofNullable(todo.content),
-        dueTime: Value.ofNullable(todo.dueTime),
+        content: Value(todo.content),
+        dueTime: Value(todo.dueTime),
       ),
     );
   }

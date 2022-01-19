@@ -11,9 +11,6 @@ import 'package:shzzz/shared/index.dart';
 const CREATE_TAG = 'create';
 const UPDATE_TAG = 'update';
 
-String generateString(int length) =>
-    List<String>.generate(length, (index) => '_').join();
-
 final _todo = Todo(
   id: 0,
   title: 'Testing',

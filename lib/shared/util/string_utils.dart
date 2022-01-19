@@ -381,3 +381,6 @@ String formatNumber(double number) {
 
   return resultNumber.replaceAll('.', ',') + symbol;
 }
+
+String generateString(int length) =>
+    List<String>.generate(length, (index) => '_').join();

@@ -13,7 +13,7 @@ class Repository extends GetxService {
   Stream<List<Todo>> getTodosWithStatus({bool isCompleted = false}) =>
       _database.getTodosWithStatus(isCompleted: isCompleted);
 
-  Future<int> addTodo(Todo entry) => _database.addTodo(entry.toCompanion(true));
+  Future<int> addTodo(Todo entry) => _database.addTodo(entry);
 
   Future<int> updateTodo(Todo entry) => _database.updateTodo(entry);
 
