@@ -9,6 +9,15 @@ import 'package:shzzz/data/index.dart';
 
 part 'todo_table.g.dart';
 
+/// Define the table schema
+/// - id: Auto incremented integer
+/// - title: Todo's tile
+/// - content: Todo's note
+/// - category: Todo's category (implemented in later phase)
+/// - createdTime: Created date and time of a todo item
+/// - dueTime: Due date and time of a todo item
+/// - completedTime: Completed date and time of a todo item
+/// - isCompleted: Whether the todo item is completed or not
 class Todos extends Table {
   IntColumn get id => integer().nullable().autoIncrement()();
   TextColumn get title => text().withLength(min: 6, max: 32)();
@@ -22,6 +31,7 @@ class Todos extends Table {
       boolean().nullable().withDefault(const Constant(false))();
 }
 
+/// Open the connection to the database by accessing the database file
 LazyDatabase openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
@@ -30,30 +40,37 @@ LazyDatabase openConnection() {
   });
 }
 
+/// [MyDatabase] represents the Database that the app will fetch and write the
+/// data into
+/// This class provides several methods to perform CRUD on the database
 @DriftDatabase(tables: [Todos])
 class MyDatabase extends _$MyDatabase {
   MyDatabase(QueryExecutor e) : super(e);
 
+  /// Use for migrating schema
   @override
   int get schemaVersion => 1;
 
+  /// Insert new todo item into the Database
   Future<int> addTodo(TodosCompanion entry) {
     return into(todos).insert(entry);
   }
 
+  /// Update existing todo item
+  /// Currently allow updating title, content and dueTime
+  /// Use [TodosCompanion] to mark the absent field instead of setting its
+  /// value to null
   Future<int> updateTodo(Todo todo) {
     return (update(todos)..where((tbl) => tbl.id.equals(todo.id))).write(
       TodosCompanion(
         title: Value(todo.title),
         content: Value.ofNullable(todo.content),
         dueTime: Value.ofNullable(todo.dueTime),
-        isCompleted: Value.ofNullable(
-          !(todo.isCompleted ?? false),
-        ),
       ),
     );
   }
 
+  /// Update completion status of a todo item
   Future<int> updateCompletion(Todo todo) {
     return (update(todos)..where((tbl) => tbl.id.equals(todo.id))).write(
         TodosCompanion(
@@ -61,14 +78,21 @@ class MyDatabase extends _$MyDatabase {
             completedTime: Value(DateTime.now())));
   }
 
+  /// Delete the todo item from Database
   Future<int> deleteEntry(Todo entry) {
     return delete(todos).delete(entry);
   }
 
+  /// Get list of todo items based on completion status
+  /// Take in [isCompleted] as param, default to false
   Stream<List<Todo>> getTodosWithStatus({bool isCompleted = false}) =>
       (select(todos)..where((tbl) => tbl.isCompleted.equals(isCompleted)))
           .watch();
 
+  /// Get all counts of completed todo items group by their completion time to
+  /// represents the user's productivity.
+  /// This method uses direct SQL query to get the data
+  /// Returns a list of [TodoCount]
   Stream<List<TodoCount>> getCompletedCountByCompletionTime() {
     return customSelect(
         'SELECT COUNT(id) AS "itemCount", completedTime FROM todos WHERE is_completed IS TRUE GROUP BY completedTime ORDER BY completedTime',
@@ -94,6 +118,10 @@ class MyDatabase extends _$MyDatabase {
     });
   }
 
+  /// Get all counts of all todo items group by their due time to represent
+  /// volume of the user's tasks from the get-go.
+  /// This method uses direct SQL query to get the data
+  /// Returns a list of [TodoCount]
   Stream<List<TodoCount>> getCountByDueTime() {
     return customSelect(
         'SELECT COUNT(id) AS "itemCount", due_time FROM todos GROUP BY due_time ORDER BY due_time',
@@ -118,8 +146,11 @@ class MyDatabase extends _$MyDatabase {
     });
   }
 
+  /// Clear all data from the table
   Future<int> clear() => delete(todos).go();
 
-  checkEqualsDate(DateTime first, DateTime second) =>
+  /// Check if 2 dates are equals (ignoring the time) by comparing it's
+  /// formatted string in Date, Month and Year
+  bool checkEqualsDate(DateTime first, DateTime second) =>
       first.formatDMY == second.formatDMY;
 }

@@ -61,21 +61,7 @@ void main() {
   });
 
   test('table can be cleared with clear()', () async {
-    await expectLater(
-      database.getTodosWithStatus(),
-      emitsInOrder([[]]),
-    );
-
     await database.addTodo(_todo1.toCompanion(true));
-    await expectLater(
-      database
-          .getTodosWithStatus()
-          .map((data) => data.map((item) => item.title).toList()),
-      emitsInOrder([
-        [_todo1.title]
-      ]),
-    );
-
     await database.addTodo(_todo2.toCompanion(true));
     await expectLater(
       database
@@ -91,6 +77,18 @@ void main() {
     await expectLater(
       database.getTodosWithStatus(),
       emitsInOrder([[]]),
+    );
+  });
+
+  test('checkEqualsDate() return correct result', () async {
+    expect(
+      await database.checkEqualsDate(DateTime.now(), DateTime.now()),
+      true,
+    );
+    expect(
+      await database.checkEqualsDate(
+          DateTime.now(), DateTime.now().add(Duration(days: 1))),
+      false,
     );
   });
 }
