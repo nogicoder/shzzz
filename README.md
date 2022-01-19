@@ -21,7 +21,7 @@ There are 3 layers to the app:
 - Business layer: Manages CRUD interaction between the `Presentation` and `Data` layer through a `Repository` class
 - Presentation layer: Presents the data and handles user interaction with the app
 
-### App Features
+## App Features
 
 - Create new todo item
 - Update existing todo item
@@ -32,12 +32,12 @@ There are 3 layers to the app:
 - Show chart display trends of user's tasks
 - Simple logout feature that cleans all user's data
 
-### Technology
+## Technology
 
 Flutter: 2.8.1 (channel `stable`)
 Dart: 2.15.1
 
-### Installation
+## Installation
 
 To run the app:
 - Clone the app to local machine: `git clone git@github.com:nogicoder/shzzz.git`
