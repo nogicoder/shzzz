@@ -3,6 +3,7 @@ import 'package:get/instance_manager.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shzzz/business/repository/repository.dart';
 import 'package:shzzz/business/services/index.dart';
+import 'package:shzzz/data/database/todo_table.dart';
 import 'package:shzzz/presentation/app.dart';
 
 void main() async {
@@ -19,7 +20,7 @@ void main() async {
 /// other screens.
 class AppBinding {
   static inject() async {
-    Get.put(Repository());
+    Get.put(Repository(MyDatabase(openConnection())));
     await Get.putAsync(
         () async => StorageService(await SharedPreferences.getInstance()));
     Get.put(UserConfigService());

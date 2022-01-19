@@ -5,10 +5,6 @@ import 'package:get/get.dart';
 
 import 'package:shzzz/business/repository/repository.dart';
 import 'package:shzzz/data/database/todo_table.dart';
-import 'package:shzzz/data/index.dart';
-import 'package:shzzz/presentation/base_screen/components/create_todo_dialog/create_todo_controller.dart';
-import 'package:shzzz/shared/index.dart';
-import 'package:shzzz/presentation/base_screen/base_screen_controller.dart';
 import 'package:shzzz/shared/widget/ui_todo_item/ui_todo_item_controller.dart';
 
 final _todo = Todo(

@@ -6,8 +6,8 @@ import 'package:shzzz/data/index.dart';
 /// Database.
 /// [MyDatabase] represents the SQLite database object that only has a getter.
 class Repository extends GetxService {
-  final MyDatabase _database = MyDatabase();
-  MyDatabase get database => _database;
+  final MyDatabase _database;
+  Repository(this._database);
 
   /// Get all todos based on completion status
   Stream<List<Todo>> getTodosWithStatus({bool isCompleted = false}) =>

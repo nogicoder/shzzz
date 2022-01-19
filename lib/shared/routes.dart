@@ -19,9 +19,10 @@ class Routes {
       page: () => RegisterScreen(),
     ),
     GetPage(
-        name: Routes.BASE_SCREEN,
-        page: () => BaseScreen(),
-        binding: BindingsBuilder.put(() => BaseScreenController())),
+      name: Routes.BASE_SCREEN,
+      page: () => BaseScreen(),
+      binding: BindingsBuilder.put(() => BaseScreenController()),
+    ),
   ];
 }
 

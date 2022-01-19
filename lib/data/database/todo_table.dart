@@ -22,7 +22,7 @@ class Todos extends Table {
       boolean().nullable().withDefault(const Constant(false))();
 }
 
-LazyDatabase _openConnection() {
+LazyDatabase openConnection() {
   return LazyDatabase(() async {
     final dbFolder = await getApplicationDocumentsDirectory();
     final file = File(p.join(dbFolder.path, 'db.sqlite'));
@@ -32,7 +32,7 @@ LazyDatabase _openConnection() {
 
 @DriftDatabase(tables: [Todos])
 class MyDatabase extends _$MyDatabase {
-  MyDatabase() : super(_openConnection());
+  MyDatabase(QueryExecutor e) : super(e);
 
   @override
   int get schemaVersion => 1;
