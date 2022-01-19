@@ -119,7 +119,7 @@ class MyDatabase extends _$MyDatabase {
             completedTime: Value(DateTime.now())));
   }
 
-  Future deleteEntry(Todo entry) {
+  Future<int> deleteEntry(Todo entry) {
     return delete(todos).delete(entry);
   }
 }
