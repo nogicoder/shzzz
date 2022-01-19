@@ -80,7 +80,6 @@ class MyDatabase extends _$MyDatabase {
         dueTime: Value(todo.dueTime),
       ),
     );
-    print(result);
     return result;
   }
 

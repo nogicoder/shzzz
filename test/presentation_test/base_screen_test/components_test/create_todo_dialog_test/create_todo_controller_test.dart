@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:get/get.dart';
@@ -17,40 +17,40 @@ final _todo = Todo(
   dueTime: DateTime.now(),
 );
 
-class MockRepository extends GetxService with Fake implements Repository {
-  @override
-  Future<int> addTodo(Todo entry) => Future.value(1);
-
-  @override
-  Future<int> updateTodo(Todo entry) => Future.value(2);
-}
-
 void main() {
-  final binding = BindingsBuilder(() {
-    Get.put<Repository>(MockRepository());
-    Get.put<CreateTodoController>(
+  late MyDatabase database;
+  late CreateTodoController createController;
+  late CreateTodoController updateController;
+
+  setUpAll(() async {
+    database = MyDatabase(NativeDatabase.memory());
+    await database.addTodo(_todo);
+
+    Get.put<Repository>(Repository(database));
+    createController = Get.put<CreateTodoController>(
       CreateTodoController(),
       tag: CREATE_TAG,
     );
-    Get.put<CreateTodoController>(
+    updateController = Get.put<CreateTodoController>(
       CreateTodoController(todo: _todo),
       tag: UPDATE_TAG,
     );
   });
 
-  group('Testing CreateTodoController when creating todo', () {
-    binding.builder();
-    final CreateTodoController controller = Get.find(tag: CREATE_TAG);
+  tearDownAll(() {
+    database.close();
+  });
 
+  group('Testing CreateTodoController when creating todo', () {
     test('Expect controller to be initialized', () {
-      expect(controller.initialized, true);
+      expect(createController.initialized, true);
     });
 
     test('Expect variables to have correct initial values', () {
-      expect(controller.hasNote.value, false);
-      expect(controller.hasError.value, false);
+      expect(createController.hasNote.value, false);
+      expect(createController.hasError.value, false);
       expect(
-        controller.dueTime.value.formatDMY == DateTime.now().formatDMY,
+        createController.dueTime.value.formatDMY == DateTime.now().formatDMY,
         true,
       );
     });
@@ -58,68 +58,65 @@ void main() {
     test(
         'Expect hasError is true when call validate() and text length is not satisfy',
         () {
-      controller.textController.text = generateString(5);
-      controller.validate();
-      expect(controller.hasError.value, true);
+      createController.textController.text = generateString(5);
+      createController.validate();
+      expect(createController.hasError.value, true);
 
-      controller.textController.text = generateString(35);
-      controller.validate();
-      expect(controller.hasError.value, true);
+      createController.textController.text = generateString(35);
+      createController.validate();
+      expect(createController.hasError.value, true);
 
-      controller.textController.text = generateString(30);
-      controller.noteController.text = generateString(101);
-      controller.validate();
-      expect(controller.hasError.value, true);
+      createController.textController.text = generateString(30);
+      createController.noteController.text = generateString(101);
+      createController.validate();
+      expect(createController.hasError.value, true);
     });
 
     test(
         'Expect hasError is false when call validate() and text length is satisfy',
         () {
-      controller.textController.text = generateString(6);
-      controller.noteController.text = generateString(100);
-      controller.validate();
-      expect(controller.hasError.value, false);
+      createController.textController.text = generateString(6);
+      createController.noteController.text = generateString(100);
+      createController.validate();
+      expect(createController.hasError.value, false);
     });
 
     test(
         'ERROR: Expect todo item with title length < 6 not create when call addTodo() ',
         () async {
-      controller.textController.text = generateString(4);
-      final _result = await controller.addTodo();
+      createController.textController.text = generateString(4);
+      final _result = await createController.addTodo();
       expect(_result, 0);
     });
 
     test(
         'ERROR: Expect todo item with title length > 32 not create when call addTodo() ',
         () async {
-      controller.textController.text = generateString(35);
-      final _result = await controller.addTodo();
+      createController.textController.text = generateString(35);
+      final _result = await createController.addTodo();
       expect(_result, 0);
     });
 
     test(
         'SUCCESS: Expect todo item with title length <= 6 and >= 32 create successfully when call addTodo() ',
         () async {
-      controller.textController.text = generateString(30);
-      controller.noteController.text = generateString(100);
-      final _result = await controller.addTodo();
+      createController.textController.text = generateString(30);
+      createController.noteController.text = generateString(100);
+      final _result = await createController.addTodo();
       expect(_result, 1);
     });
   });
 
   group('Testing CreateTodoController when updating todo', () {
-    binding.builder();
-    final CreateTodoController controller = Get.find(tag: UPDATE_TAG);
-
     test('Expect controller to be initialized', () {
-      expect(controller.initialized, true);
+      expect(updateController.initialized, true);
     });
 
     test('Expect variables to have correct initial values', () {
-      expect(controller.hasNote.value, false);
-      expect(controller.hasError.value, false);
+      expect(updateController.hasNote.value, false);
+      expect(updateController.hasError.value, false);
       expect(
-        controller.dueTime.value.formatDMY == DateTime.now().formatDMY,
+        updateController.dueTime.value.formatDMY == DateTime.now().formatDMY,
         true,
       );
     });
@@ -127,52 +124,52 @@ void main() {
     test(
         'Expect hasError is true when call validate() and text length is not satisfy',
         () {
-      controller.textController.text = generateString(5);
-      controller.validate();
-      expect(controller.hasError.value, true);
+      updateController.textController.text = generateString(5);
+      updateController.validate();
+      expect(updateController.hasError.value, true);
 
-      controller.textController.text = generateString(35);
-      controller.validate();
-      expect(controller.hasError.value, true);
+      updateController.textController.text = generateString(35);
+      updateController.validate();
+      expect(updateController.hasError.value, true);
 
-      controller.textController.text = generateString(30);
-      controller.noteController.text = generateString(101);
-      controller.validate();
-      expect(controller.hasError.value, true);
+      updateController.textController.text = generateString(30);
+      updateController.noteController.text = generateString(101);
+      updateController.validate();
+      expect(updateController.hasError.value, true);
     });
 
     test(
         'Expect hasError is false when call validate() and text length is satisfy',
         () {
-      controller.textController.text = generateString(6);
-      controller.noteController.text = generateString(100);
-      controller.validate();
-      expect(controller.hasError.value, false);
+      updateController.textController.text = generateString(6);
+      updateController.noteController.text = generateString(100);
+      updateController.validate();
+      expect(updateController.hasError.value, false);
     });
 
     test(
         'ERROR: Expect todo item with title length < 6 not updated when call addTodo() ',
         () async {
-      controller.textController.text = generateString(4);
-      final _result = await controller.addTodo();
+      updateController.textController.text = generateString(4);
+      final _result = await updateController.addTodo();
       expect(_result, 0);
     });
 
     test(
         'ERROR: Expect todo item with title length > 32 not updated when call addTodo() ',
         () async {
-      controller.textController.text = generateString(35);
-      final _result = await controller.addTodo();
+      updateController.textController.text = generateString(35);
+      final _result = await updateController.addTodo();
       expect(_result, 0);
     });
 
     test(
         'SUCCESS: Expect todo item with title length <= 6 and >= 32 updated successfully when call addTodo() ',
         () async {
-      controller.textController.text = generateString(30);
-      controller.noteController.text = generateString(100);
-      final _result = await controller.addTodo();
-      expect(_result, 2);
+      updateController.textController.text = generateString(30);
+      updateController.noteController.text = generateString(100);
+      final _result = await updateController.addTodo();
+      expect(_result, 1);
     });
   });
 }

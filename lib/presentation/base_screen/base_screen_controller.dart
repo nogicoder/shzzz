@@ -17,7 +17,7 @@ class BaseScreenController extends GetxController
   var completedTodos = <Todo>[].obs;
   var ongoingTodos = <Todo>[].obs;
   var completedCounts = <TodoCount>[].obs;
-  var ongoingCounts = <TodoCount>[].obs;
+  var todoCounts = <TodoCount>[].obs;
 
   @override
   void onInit() {
@@ -31,7 +31,7 @@ class BaseScreenController extends GetxController
       completedCounts.value = event;
     });
     repository.getCountByDueTime().listen((event) {
-      ongoingCounts.value = event;
+      todoCounts.value = event;
     });
 
     super.onInit();

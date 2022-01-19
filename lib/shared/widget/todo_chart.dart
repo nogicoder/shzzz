@@ -99,10 +99,10 @@ class TodoChart extends GetView<BaseScreenController> {
           const Color(0x00aa4cfc),
         ]),
         spots: List<FlSpot>.generate(
-          controller.ongoingCounts.length,
+          controller.todoCounts.length,
           (index) => FlSpot(
             index.toDouble(),
-            controller.ongoingCounts[index].count.toDouble(),
+            controller.todoCounts[index].count.toDouble(),
           ),
         ),
       );

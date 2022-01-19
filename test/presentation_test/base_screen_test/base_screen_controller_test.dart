@@ -1,68 +1,66 @@
-import 'package:flutter/material.dart';
+import 'package:drift/native.dart';
 import 'package:flutter_test/flutter_test.dart';
-
 import 'package:get/get.dart';
-
 import 'package:shzzz/business/repository/repository.dart';
 import 'package:shzzz/data/database/todo_table.dart';
-import 'package:shzzz/data/index.dart';
-import 'package:shzzz/shared/index.dart';
 import 'package:shzzz/presentation/base_screen/base_screen_controller.dart';
+import 'package:shzzz/shared/index.dart';
 
-final _todo = Todo(
+final _incompleteTodo = Todo(
   id: 0,
   title: 'Testing',
   dueTime: DateTime.now(),
 );
 
-final _todoCount = TodoCount(
-  count: 1,
-  dateTime: DateTime.now(),
+final _completedTodo = Todo(
+  id: 1,
+  title: 'Testing',
+  dueTime: DateTime.now(),
+  isCompleted: true,
+  completedTime: DateTime.now(),
 );
 
-class MockRepository extends GetxService with Fake implements Repository {
-  @override
-  Stream<List<Todo>> getTodosWithStatus({bool isCompleted = false}) =>
-      isCompleted ? Stream.value([_todo]) : Stream.value([]);
+void main() async {
+  late MyDatabase database;
+  late BaseScreenController controller;
 
-  @override
-  Stream<List<TodoCount>> getCompletedCountByCompletionTime() =>
-      Stream.value([_todoCount]);
+  setUpAll(() async {
+    database = MyDatabase(NativeDatabase.memory());
+    await database.addTodo(_incompleteTodo);
+    await database.addTodo(_completedTodo);
 
-  @override
-  Stream<List<TodoCount>> getCountByDueTime() => Stream.value([]);
-}
+    Get.put<Repository>(Repository(database));
 
-void main() {
-  final binding = BindingsBuilder(() {
-    Get.put<Repository>(MockRepository());
-    Get.put<BaseScreenController>(BaseScreenController());
+    controller = Get.put(BaseScreenController());
+  });
+
+  tearDownAll(() {
+    database.close();
   });
 
   group('Testing initialization of BaseScreenController', () {
-    binding.builder();
-    final BaseScreenController controller = Get.find();
-
     test('Expect controller status to be initialized', () {
       expect(controller.initialized, true);
     });
 
     test('Expect completedTodos contains a single item', () {
       expect(controller.completedTodos.isNotEmpty, true);
-      expect(controller.completedTodos.first.equals(_todo), true);
+      expect(controller.completedTodos.first.equals(_completedTodo), true);
     });
 
-    test('Expect ongoingTodos is empty', () {
-      expect(controller.ongoingTodos.isEmpty, true);
+    test('Expect ongoingTodos contains a single item', () {
+      expect(controller.ongoingTodos.isNotEmpty, true);
+      expect(controller.ongoingTodos.first.equals(_incompleteTodo), true);
     });
 
-    test('Expect completedCounts contains a single item', () {
+    test('Expect completedCounts return a single item', () {
       expect(controller.completedCounts.isNotEmpty, true);
-      expect(controller.completedCounts.first == _todoCount, true);
+      expect(controller.completedCounts.first.count == 1, true);
     });
 
-    test('Expect ongoingCounts is empty', () {
-      expect(controller.ongoingCounts.isEmpty, true);
+    test('Expect todoCounts return 2 items', () {
+      expect(controller.todoCounts.isNotEmpty, true);
+      expect(controller.todoCounts.first.count == 2, true);
     });
   });
 }
