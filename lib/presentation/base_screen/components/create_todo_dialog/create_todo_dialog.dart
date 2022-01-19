@@ -56,7 +56,15 @@ class CreateTodoDialog extends GetView<CreateTodoController> {
                   title: todo != null ? tr().update : tr().create_task,
                   isDisable: controller.hasError.value ||
                       controller.textController.text.isEmpty,
-                  onTap: controller.addTodo,
+                  onTap: () async {
+                    await controller.addTodo();
+                    Get.back();
+                    Get.snackbar(
+                        APP_TITLE,
+                        todo != null
+                            ? tr().success_updating_task
+                            : tr().success_adding_task);
+                  },
                   buttonColor: Get.theme.colorScheme.secondary,
                 ),
               ),
@@ -88,8 +96,7 @@ class CreateTodoDialog extends GetView<CreateTodoController> {
           controller: controller.textController,
           focusNode: controller.focusNode,
           onChanged: (value) {
-            controller.hasError.value =
-                value.trim().length < Constants.MIN_TITLE_LENGTH;
+            controller.validate();
           },
           decoration: InputDecoration(
             border: InputBorder.none,

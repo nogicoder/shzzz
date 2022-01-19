@@ -11,7 +11,7 @@ import 'package:shzzz/presentation/base_screen/base_screen_controller.dart';
 
 final _todo = Todo(
   id: 0,
-  title: 'Test',
+  title: 'Testing',
   dueTime: DateTime.now(),
 );
 
@@ -30,7 +30,7 @@ class MockRepository extends GetxService with Fake implements Repository {
       Stream.value([_todoCount]);
 
   @override
-  Stream<List<TodoCount>> getCountByDueTime() => Stream.value([_todoCount]);
+  Stream<List<TodoCount>> getCountByDueTime() => Stream.value([]);
 }
 
 void main() {
@@ -44,18 +44,16 @@ void main() {
     binding.builder();
     final BaseScreenController controller = Get.find();
 
-    test('Expect controller to be initialized', () {
+    test('Expect controller status to be initialized', () {
       expect(controller.initialized, true);
     });
-
-    Future.delayed(Duration(milliseconds: 500));
 
     test('Expect completedTodos contains a single item', () {
       expect(controller.completedTodos.isNotEmpty, true);
       expect(controller.completedTodos.first.equals(_todo), true);
     });
 
-    test('Expect ongoingTodos is Empty', () {
+    test('Expect ongoingTodos is empty', () {
       expect(controller.ongoingTodos.isEmpty, true);
     });
 
@@ -64,9 +62,8 @@ void main() {
       expect(controller.completedCounts.first == _todoCount, true);
     });
 
-    test('Expect ongoingCounts contains a single item', () {
-      expect(controller.ongoingCounts.isNotEmpty, true);
-      expect(controller.ongoingCounts.first == _todoCount, true);
+    test('Expect ongoingCounts is empty', () {
+      expect(controller.ongoingCounts.isEmpty, true);
     });
   });
 }

@@ -27,24 +27,23 @@ class CreateTodoController extends GetxController {
   /// Database.
   ///
   /// The user will then be notified by a [Snackbar]
-  void addTodo() {
-    if (!validate()) {
-      return;
-    }
+  Future<int> addTodo() async {
     final Todo entry = Todo(
       title: textController.text,
       content: noteController.text,
       createdTime: DateTime.now(),
       dueTime: dueTime.value,
     );
-    if (todo != null) {
-      repository.updateTodo(entry);
-    } else {
-      repository.addTodo(entry);
+    validate();
+
+    if (hasError.value) {
+      return 0;
     }
-    Get.back();
-    Get.snackbar(APP_TITLE,
-        todo != null ? tr().success_updating_task : tr().success_adding_task);
+    if (todo != null) {
+      return await repository.updateTodo(entry);
+    } else {
+      return await repository.addTodo(entry);
+    }
   }
 
   /// Validate the user input based on 3 conditions:
@@ -52,14 +51,10 @@ class CreateTodoController extends GetxController {
   /// and [Constants.MAX_TITLE_LENGTH] characters
   /// - The note's length must be less than [Constants.MAX_NOTE_LENGTH]
   /// Else the user will receive an error alert
-  bool validate() {
-    if (textController.text.length >= Constants.MIN_TITLE_LENGTH &&
-        textController.text.length <= Constants.MAX_TITLE_LENGTH &&
-        noteController.text.length <= Constants.MAX_NOTE_LENGTH) {
-      return true;
-    }
-    DialogUtil.alert(tr().please_check_input);
-    return false;
+  void validate() {
+    hasError.value = textController.text.length < Constants.MIN_TITLE_LENGTH ||
+        textController.text.length > Constants.MAX_TITLE_LENGTH ||
+        noteController.text.length > Constants.MAX_NOTE_LENGTH;
   }
 
   @override

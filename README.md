@@ -27,12 +27,12 @@ Dart: 2.15.1
 
 ### Installation
 
-Run the app with following steps:
+To run the app:
 - Make sure you are on the correct version of `Flutter` and `Dart`
 - Run `flutter pub get`
 - Run `flutter run`
 
-To run the tests, follow these steps:
+To run the tests:
 - Run `flutter test`
 
 ## Upcoming Feature
