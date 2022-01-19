@@ -34,7 +34,7 @@ There are 3 layers to the app:
 
 ## Technology
 
-Flutter: 2.8.1 (channel `stable`)
+Flutter: 2.8.1 (channel `stable`)  
 Dart: 2.15.1
 
 ## Installation
@@ -59,4 +59,4 @@ To run the project tests, from the project root run `flutter test`
 
 ## Contact
 
-For further contact and support, please contact: [bachmai@sunshinegroup.vn](mailto:bachmai@sunshinegroup.vn)
+For further contact and support, please contact: [bachm.biz@protonmail.vn](mailto:bachm.biz@protonmail.vn)
