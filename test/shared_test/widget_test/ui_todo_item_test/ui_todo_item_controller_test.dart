@@ -23,7 +23,6 @@ class MockRepository extends GetxService with Fake implements Repository {
 }
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
   final binding = BindingsBuilder(() {
     Get.put<Repository>(MockRepository());
     Get.put<UITodoItemController>(

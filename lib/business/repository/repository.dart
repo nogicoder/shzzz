@@ -9,28 +9,28 @@ class Repository extends GetxService {
   final MyDatabase _database;
   Repository(this._database);
 
+  Future<int> addTodo(Todo entry) => _database.addTodo(entry);
+
   /// Get all todos based on completion status
   Stream<List<Todo>> getTodosWithStatus({bool isCompleted = false}) =>
       _database.getTodosWithStatus(isCompleted: isCompleted);
 
-  Future<int> addTodo(Todo entry) => _database.addTodo(entry);
+  Future<int> deleteTodo(Todo entry) => _database.deleteTodo(entry);
 
   Future<int> updateTodo(Todo entry) => _database.updateTodo(entry);
 
   /// Update only the completion status of each todo
   Future<int> updateCompletion(Todo entry) => _database.updateCompletion(entry);
 
-  Future<int> deleteTodo(Todo entry) => _database.deleteTodo(entry);
-
-  /// Get all completed todos by their completion time
+  /// Get all counts of completed todos by their completion time
   Stream<List<TodoCount>> getCompletedCountByCompletionTime() =>
       _database.getCompletedCountByCompletionTime();
 
-  /// Get all todos by their due time
+  /// Get counts of all todos by their due time
   Stream<List<TodoCount>> getCountByDueTime() => _database.getCountByDueTime();
 
   /// Clear all the table's data
-  clearDatabase() => _database.clear();
+  Future<int> clearDatabase() => _database.clear();
 }
 
 /// Single access point for Repository
