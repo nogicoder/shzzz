@@ -5,6 +5,7 @@ A "boring" Todo application that works.
 ## Index
 
 - [Project Structure](#project-structure)
+- [App Features](#app-features)
 - [Technology](#technology)
 - [Installation](#installation)
 - [Upcoming Feature](#upcoming-feature)
@@ -16,9 +17,19 @@ A "boring" Todo application that works.
 The app uses `Getx` to manage State, Navigation and Dependency Injection.
 
 There are 3 layers to the app:
-- Data layer: Provides data from local DB, API in the form of `models`
+- Data layer: Provides data from local database
 - Business layer: Manages CRUD interaction between the `Presentation` and `Data` layer through a `Repository` class
 - Presentation layer: Presents the data and handles user interaction with the app
+
+### App Features
+
+- Create new todo item
+- Update existing todo item
+- Mark new todo item as completed
+- Change app theme between Light and Dark
+- Change app's language
+- Display statistics such as total completed/ ongoing todos
+- Show chart display trends of user's tasks
 
 ### Technology
 
