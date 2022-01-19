@@ -28,21 +28,24 @@ class CreateTodoController extends GetxController {
   ///
   /// The user will then be notified by a [Snackbar]
   Future<int> addTodo() async {
-    final Todo entry = Todo(
-      title: textController.text,
-      content: noteController.text,
-      createdTime: DateTime.now(),
-      dueTime: dueTime.value,
-    );
     validate();
 
     if (hasError.value) {
       return 0;
     }
     if (todo != null) {
-      return await repository.updateTodo(entry);
+      return await repository.updateTodo(todo!.copyWith(
+        title: textController.text,
+        content: noteController.text,
+        dueTime: dueTime.value,
+      ));
     } else {
-      return await repository.addTodo(entry);
+      return await repository.addTodo(Todo(
+        title: textController.text,
+        content: noteController.text,
+        dueTime: dueTime.value,
+        createdTime: DateTime.now(),
+      ));
     }
   }
 

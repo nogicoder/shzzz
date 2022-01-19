@@ -71,14 +71,17 @@ class MyDatabase extends _$MyDatabase {
   /// Currently allow updating title, content and dueTime
   /// Use [TodosCompanion] to mark the absent field instead of setting its
   /// value to null
-  Future<int> updateTodo(Todo todo) {
-    return (update(todos)..where((tbl) => tbl.id.equals(todo.id))).write(
+  Future<int> updateTodo(Todo todo) async {
+    final result =
+        await (update(todos)..where((tbl) => tbl.id.equals(todo.id))).write(
       TodosCompanion(
         title: Value(todo.title),
         content: Value(todo.content),
         dueTime: Value(todo.dueTime),
       ),
     );
+    print(result);
+    return result;
   }
 
   /// Update completion status of a todo item
