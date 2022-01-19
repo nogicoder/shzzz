@@ -56,6 +56,17 @@ class MyDatabase extends _$MyDatabase {
     return into(todos).insert(entry.toCompanion(true));
   }
 
+  /// Get list of todo items based on completion status
+  /// Take in [isCompleted] as param, default to false
+  Stream<List<Todo>> getTodosWithStatus({bool isCompleted = false}) =>
+      (select(todos)..where((tbl) => tbl.isCompleted.equals(isCompleted)))
+          .watch();
+
+  /// Delete the todo item from Database
+  Future<int> deleteTodo(Todo entry) {
+    return delete(todos).delete(entry);
+  }
+
   /// Update existing todo item
   /// Currently allow updating title, content and dueTime
   /// Use [TodosCompanion] to mark the absent field instead of setting its
@@ -77,17 +88,6 @@ class MyDatabase extends _$MyDatabase {
             isCompleted: Value.ofNullable(!(todo.isCompleted ?? false)),
             completedTime: Value(DateTime.now())));
   }
-
-  /// Delete the todo item from Database
-  Future<int> deleteEntry(Todo entry) {
-    return delete(todos).delete(entry);
-  }
-
-  /// Get list of todo items based on completion status
-  /// Take in [isCompleted] as param, default to false
-  Stream<List<Todo>> getTodosWithStatus({bool isCompleted = false}) =>
-      (select(todos)..where((tbl) => tbl.isCompleted.equals(isCompleted)))
-          .watch();
 
   /// Get all counts of completed todo items group by their completion time to
   /// represents the user's productivity.
@@ -148,9 +148,4 @@ class MyDatabase extends _$MyDatabase {
 
   /// Clear all data from the table
   Future<int> clear() => delete(todos).go();
-
-  /// Check if 2 dates are equals (ignoring the time) by comparing it's
-  /// formatted string in Date, Month and Year
-  bool checkEqualsDate(DateTime first, DateTime second) =>
-      first.formatDMY == second.formatDMY;
 }

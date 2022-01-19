@@ -384,3 +384,8 @@ String formatNumber(double number) {
 
 String generateString(int length) =>
     List<String>.generate(length, (index) => '_').join();
+
+/// Check if 2 dates are equals (ignoring the time) by comparing it's
+/// formatted string in Date, Month and Year
+bool checkEqualsDate(DateTime first, DateTime second) =>
+    first.formatDMY == second.formatDMY;

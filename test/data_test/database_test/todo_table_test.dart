@@ -26,40 +26,11 @@ void main() {
     await database.close();
   });
 
-  test('todo can be created with addTodo()', () async {
+  test('Todo can be created with addTodo()', () async {
     final id1 = await database.addTodo(_todo1);
     final id2 = await database.addTodo(_todo2);
     expect(id1, 0);
     expect(id2, 1);
-  });
-
-  test('todo can be updated with updateTodo()', () async {
-    final id = await database.addTodo(_todo1);
-
-    expect(id, 0);
-
-    await expectLater(
-      database
-          .getTodosWithStatus()
-          .map((data) => data.map((item) => item.title).toList()),
-      emitsInOrder([
-        [generateString(6)]
-      ]),
-    );
-
-    final _newTodo = _todo1.copyWith(title: generateString(10));
-    final updateId = await database.updateTodo(_newTodo);
-
-    expect(updateId, 1);
-
-    await expectLater(
-      database
-          .getTodosWithStatus()
-          .map((data) => data.map((item) => item.title).toList()),
-      emitsInOrder([
-        [generateString(10)]
-      ]),
-    );
   });
 
   test('getTodosWithStatus() emits todo lists when creating new todo items',
@@ -90,6 +61,103 @@ void main() {
     );
   });
 
+  test('Todo can be deleted with deleteTodo()', () async {
+    await database.addTodo(_todo1);
+    await database.addTodo(_todo2);
+
+    final numberOfRow = await database.deleteTodo(_todo2);
+    expect(numberOfRow, 1);
+
+    await expectLater(
+      database
+          .getTodosWithStatus()
+          .map((data) => data.map((item) => item.title).toList()),
+      emitsInOrder([
+        [_todo1.title]
+      ]),
+    );
+  });
+
+  test('Todo can be updated with updateTodo()', () async {
+    await database.addTodo(_todo1);
+
+    final _newTodo = _todo1.copyWith(title: generateString(10));
+    final numberOfRow = await database.updateTodo(_newTodo);
+
+    expect(numberOfRow, 1);
+
+    await expectLater(
+      database
+          .getTodosWithStatus()
+          .map((data) => data.map((item) => item.title).toList()),
+      emitsInOrder([
+        [generateString(10)]
+      ]),
+    );
+  });
+
+  test('Completion status can be updated with updateCompletion()', () async {
+    await database.addTodo(_todo1);
+    var numberOfRow = await database.updateCompletion(_todo1);
+    expect(numberOfRow, 1);
+
+    await expectLater(
+      database
+          .getTodosWithStatus(isCompleted: true)
+          .map((data) => data.map((item) => item.isCompleted).toList()),
+      emitsInOrder([
+        [true]
+      ]),
+    );
+
+    final _newTodo = _todo1.copyWith(isCompleted: true);
+    numberOfRow = await database.updateCompletion(_newTodo);
+    expect(numberOfRow, 1);
+
+    await expectLater(
+      database
+          .getTodosWithStatus()
+          .map((data) => data.map((item) => item.isCompleted).toList()),
+      emitsInOrder([
+        [false]
+      ]),
+    );
+  });
+
+  test(
+      'getCompletedCountByCompletionTime() emits all counts of completed todo items group by their completion time',
+      () async {
+    await database.addTodo(_todo1);
+    await database.addTodo(_todo2);
+    await database.updateCompletion(_todo1);
+    await database.updateCompletion(_todo2);
+
+    await expectLater(
+      database
+          .getCompletedCountByCompletionTime()
+          .map((data) => data.map((item) => item.count).toList()),
+      emitsInOrder([
+        [2]
+      ]),
+    );
+  });
+
+  test(
+      'getCountByDueTime() emits all counts of all todo items group by their due time',
+      () async {
+    await database.addTodo(_todo1);
+    await database.addTodo(_todo2);
+
+    await expectLater(
+      database
+          .getCountByDueTime()
+          .map((data) => data.map((item) => item.count).toList()),
+      emitsInOrder([
+        [2]
+      ]),
+    );
+  });
+
   test('table can be cleared with clear()', () async {
     await database.addTodo(_todo1);
     await database.addTodo(_todo2);
@@ -107,18 +175,6 @@ void main() {
     await expectLater(
       database.getTodosWithStatus(),
       emitsInOrder([[]]),
-    );
-  });
-
-  test('checkEqualsDate() return correct result', () async {
-    expect(
-      await database.checkEqualsDate(DateTime.now(), DateTime.now()),
-      true,
-    );
-    expect(
-      await database.checkEqualsDate(
-          DateTime.now(), DateTime.now().add(Duration(days: 1))),
-      false,
     );
   });
 }

@@ -20,7 +20,7 @@ class Repository extends GetxService {
   /// Update only the completion status of each todo
   Future<int> updateCompletion(Todo entry) => _database.updateCompletion(entry);
 
-  Future<int> deleteTodo(Todo entry) => _database.deleteEntry(entry);
+  Future<int> deleteTodo(Todo entry) => _database.deleteTodo(entry);
 
   /// Get all completed todos by their completion time
   Stream<List<TodoCount>> getCompletedCountByCompletionTime() =>
